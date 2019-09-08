@@ -20,8 +20,9 @@ Aplikacja Webowa,napisana w React, wyswietla wykres na podstawie danych pobieran
 - Humidity(id, value, datatime);
 
 # Przykladowe linki do REST API
-http://localhost:8000/api/temperature
-http://localhost:8000/api/humidity
+- http://localhost:8000/api/temperature
+- http://localhost:8000/api/humidity
+
 
 
 
