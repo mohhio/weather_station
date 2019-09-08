@@ -13,11 +13,11 @@ PUT	 - edycja danych o indentyfikatorze
 POST - utworzenie noweg wposu
 DELETE - usuniecie wpisu o id
 
-# Struktura bazy danych MongoDB
+# Struktura bazy danych MySQL
 
 Tabele
-Temperature[{id, value, datatime}];
-Humidity[{id, value, datatime}];
+Temperature(id, value, datatime);
+Humidity(id, value, datatime);
 
 # Przykladowe linki do REST API
 http://localhost:8000/api/temperature
