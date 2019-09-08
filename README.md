@@ -1,7 +1,7 @@
 # Pogodynka 
 
 Aplikacja mobilna napisana w ReactNative zczytuje dane z termometra Xiaomi Mi Temperature Humidity Monitor Bluetooth
-nastpenie umieszcza je w bazie danych MySql za pośrednictwem API napisane w Javie.
+następnie umieszcza je w bazie danych MySql za pośrednictwem API napisane w Javie.
 
 # PogodynkaWykres
 
