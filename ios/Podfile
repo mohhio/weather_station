@@ -33,4 +33,6 @@ target 'ble' do
   pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
   pod 'react-native-ble-plx-swift', :path => '../node_modules/react-native-ble-plx'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end

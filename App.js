@@ -5,6 +5,9 @@ import { BleManager } from 'react-native-ble-plx';
 import base64 from 'react-native-base64';
 import config from './src/firebase';
 import firebase from 'firebase';
+import { Container, Header } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class App extends React.Component {
 	constructor() {
@@ -13,7 +16,21 @@ class App extends React.Component {
 		this.state = {
 			temp: null,
 			acctual: '',
-			countdown: 60
+			countdown: 60,
+			colors: [
+				'#F44336',
+				'#E91E63',
+				'#9C27B0',
+				'#673AB7',
+				'#3F51B5',
+				'#2196F3',
+				'#03A9F4',
+				'#00BCD4',
+				'#009688',
+				'#009688',
+				'#4CAF50',
+				'#FFEB3B'
+			]
 		};
 	}
 
@@ -109,17 +126,16 @@ class App extends React.Component {
 								const temp = this.parser(base64.decode(char.value));
 
 								this.setState({ temp });
-								
+
 								const t = parseFloat(temp[0]);
 								const h = parseFloat(temp[1]);
 
 								const date = Date.now();
 								firebase.database().ref('temperature').push({ t, date });
 								firebase.database().ref('humidity').push({ h, date });
-							
 							}
 						);
-						
+
 						return characteristic;
 					})
 					.then((characteristic) => {
@@ -136,19 +152,54 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={{ fontSize: 15, color: '#FFF' }}>
-					{this.state.countdown} - {this.state.acctual}
-				</Text>
-				<Text style={{ fontSize: 30, color: '#00FF41' }}>
-					{this.state.temp && `TEMPERATURA:${this.state.temp[0]}°C`}
-				</Text>
-				<Text style={{ fontSize: 30, color: '#00FF41' }}>
-					{this.state.temp && `WILGONTOŚĆ: ${this.state.temp[1]}`}%
-				</Text>
-				<Button onPress={() => this.scanAndConnect()} title="Podłącz sie do termometra" />
-				<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
-			</View>
+			//
+			//
+			//
+			<Container>
+				<Header />
+				<Grid>
+					<Col style={{ backgroundColor: this.state.colors[0], height: 200, width: 200 }}>
+						<View style={styles.container}>
+							<Text style={{ fontSize: 30, color: '#FFF' }}>
+							<IconFontMC name="thermometer"  size={50}/>
+								{this.state.temp && `${this.state.temp[0]}°C`}
+							</Text>
+						</View>
+					</Col>
+					<Col style={{ backgroundColor: this.state.colors[2], height: 200 }}>
+						<View style={styles.container}>
+							<Text style={{ fontSize: 30, color: '#FFF' }}>
+							<IconFontMC name="water"  size={50}/>
+								{this.state.temp && `${this.state.temp[1]}`}%
+							</Text>
+						</View>
+					</Col>
+				</Grid>
+				<Grid>
+					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
+						<Button onPress={() => this.scanAndConnect()} title="Podłącz sie do termometra" />
+					</Col>
+					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
+						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
+					</Col>
+				</Grid>
+				<Grid>
+					<Col style={{ backgroundColor: this.state.colors[3], height: 200 }}>
+						<Text style={{ fontSize: 15, color: '#FFF' }}>
+							{this.state.countdown} - {this.state.acctual}
+						</Text>
+					</Col>
+					<Col style={{ backgroundColor: this.state.colors[6], height: 200 }}>
+						<View style={styles.container}>
+		
+						</View>
+					</Col>
+				</Grid>
+				<Grid>
+					<Col style={{ backgroundColor: this.state.colors[5], height: 200 }} />
+					<Col style={{ backgroundColor: this.state.colors[7], height: 200 }} />
+				</Grid>
+			</Container>
 		);
 	}
 }
@@ -158,8 +209,8 @@ export default App;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#000',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		textAlignVertical: 'center'
 	}
 });

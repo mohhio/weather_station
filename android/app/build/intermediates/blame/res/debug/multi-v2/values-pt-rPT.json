@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/konradhanus/Desktop/ReactNative/BlueTooth/ble/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "/Users/konradhanus/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e000c981c5031d67479166d073ef8c7e/res/values-pt-rPT/values-pt-rPT.xml",
