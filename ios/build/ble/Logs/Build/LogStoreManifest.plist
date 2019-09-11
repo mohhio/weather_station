@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ble project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ble</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project ble with scheme ble and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>589222389.90584099</real>
+			<key>timeStoppedRecording</key>
+			<real>589222390.08118606</real>
+			<key>title</key>
+			<string>Building project ble with scheme ble and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE</string>
+		</dict>
+		<key>B638E5A8-1010-49C9-A79F-83A5970B3E28</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>B638E5A8-1010-49C9-A79F-83A5970B3E28.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ble project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ble</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project ble with scheme ble and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>589222250.03502703</real>
+			<key>timeStoppedRecording</key>
+			<real>589222250.23852003</real>
+			<key>title</key>
+			<string>Building project ble with scheme ble and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>B638E5A8-1010-49C9-A79F-83A5970B3E28</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
