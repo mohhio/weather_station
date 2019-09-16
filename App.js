@@ -40,7 +40,7 @@ class App extends React.Component {
 			this.countdownMinus();
 		}, 1000);
 		this.scanAndConnect();
-		this._interval2 = setInterval(() => this.scanAndConnect(), 30000);
+		//this._interval2 = setInterval(() => this.scanAndConnect(), 30000);
 		//setInterval(, 1000);
 	}
 
@@ -90,62 +90,130 @@ class App extends React.Component {
 				return;
 			}
 
-			console.log(device.name);
+			//console.log(device.name);
 			this.setState({ acctual: device.name });
-			if (device.name === 'MJ_HT_V1') {
-				this.setState({ acctual: device.name });
-				console.log('znalazł');
 
+			//thermometer
+			// if (device.name === 'MJ_HT_V1') {
+			// 	this.setState({ acctual: device.name });
+			// 	console.log('znalazł');
+
+			// 	device
+			// 		.connect()
+			// 		.then((device) => {
+			// 			return device.discoverAllServicesAndCharacteristics();
+			// 		})
+			// 		.then((device) => {
+			// 			console.log(device._manager);
+			// 			const servicesForDevice = device._manager.servicesForDevice(device.id);
+			// 			return servicesForDevice;
+			// 		})
+			// 		.then((services) => {
+			// 			return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
+			// 		})
+			// 		.then((service) => {
+			// 			console.log(service);
+			// 			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
+			// 		})
+			// 		.then((characteristics) => {
+			// 			return characteristics[0];
+			// 		})
+			// 		.then((characteristic) => {
+			// 			characteristic._manager.monitorCharacteristicForDevice(
+			// 				characteristic.deviceID,
+			// 				characteristic.serviceUUID,
+			// 				characteristic.uuid,
+			// 				(error, char) => {
+			// 					console.log(error);
+			// 					const temp = this.parser(base64.decode(char.value));
+
+			// 					this.setState({ temp });
+
+			// 					const t = parseFloat(temp[0]);
+			// 					const h = parseFloat(temp[1]);
+
+			// 					const date = Date.now();
+			// 					firebase.database().ref('temperature').push({ t, date });
+			// 					firebase.database().ref('humidity').push({ h, date });
+			// 				}
+			// 			);
+
+			// 			return characteristic;
+			// 		})
+			// 		.then((characteristic) => {
+			// 			characteristic._manager.stopDeviceScan();
+			// 		})
+			// 		.catch((error) => {
+			// 			//this.scanAgain();
+			// 			console.log(error);
+			// 		});
+			// 	this.manager.stopDeviceScan();
+			// }
+
+			//kettle
+			if (device.name === 'MiKettle') {
+				console.log('znalazł czajnik');
 				device
 					.connect()
 					.then((device) => {
+						console.log(device);
 						return device.discoverAllServicesAndCharacteristics();
 					})
 					.then((device) => {
-						console.log(device._manager);
+						console.log(servicesForDevice);
 						const servicesForDevice = device._manager.servicesForDevice(device.id);
 						return servicesForDevice;
 					})
 					.then((services) => {
-						return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
+						return services.filter((service) => service.uuid === '01344736-0000-1000-8000-262837236156')[0];
 					})
 					.then((service) => {
-						console.log(service);
 						return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
 					})
 					.then((characteristics) => {
-						return characteristics[0];
+						//0000aa02-0000-1000-8000-00805f9b34fb -status characteristics
+
+						//characteristics.map((characteristic)=>{
+							console(characteristics);
+							const characteristic = characteristics[3];
+							characteristic._manager.monitorCharacteristicForDevice(
+								characteristic.deviceID,
+								characteristic.serviceUUID,
+								characteristic.uuid,
+								(error, char) => {
+									console.log(error);
+									console.log(char)
+								}
+							)
+						
+
+						//console.log(characteristics[1]);
+						return characteristics[1];
 					})
-					.then((characteristic) => {
-						characteristic._manager.monitorCharacteristicForDevice(
-							characteristic.deviceID,
-							characteristic.serviceUUID,
-							characteristic.uuid,
-							(error, char) => {
-								console.log(error);
-								const temp = this.parser(base64.decode(char.value));
+					// .then((characteristic) => {
+					// 	console.log(characteristic);
+					// 	characteristic._manager.monitorCharacteristicForDevice(
+					// 		characteristic.deviceID,
+					// 		characteristic.serviceUUID,
+					// 		characteristic.uuid,
+					// 		(error, char) => {
+					// 			console.log(error);
+					// 			console.log(char)
+					// 			// const temp = this.parser(base64.decode(char.value));
 
-								this.setState({ temp });
+					// 			// this.setState({ temp });
 
-								const t = parseFloat(temp[0]);
-								const h = parseFloat(temp[1]);
+					// 			// const t = parseFloat(temp[0]);
+					// 			// const h = parseFloat(temp[1]);
 
-								const date = Date.now();
-								firebase.database().ref('temperature').push({ t, date });
-								firebase.database().ref('humidity').push({ h, date });
-							}
-						);
+					// 			// const date = Date.now();
+					// 			// firebase.database().ref('temperature').push({ t, date });
+					// 			// firebase.database().ref('humidity').push({ h, date });
+					// 		}
+					// 	);
 
-						return characteristic;
-					})
-					.then((characteristic) => {
-						characteristic._manager.stopDeviceScan();
-					})
-					.catch((error) => {
-						//this.scanAgain();
-						console.log(error);
-					});
-				this.manager.stopDeviceScan();
+					//	return characteristic;
+					//});
 			}
 		});
 	};
@@ -161,7 +229,7 @@ class App extends React.Component {
 					<Col style={{ backgroundColor: this.state.colors[0], height: 200, width: 200 }}>
 						<View style={styles.container}>
 							<Text style={{ fontSize: 30, color: '#FFF' }}>
-							<IconFontMC name="thermometer"  size={50}/>
+								<IconFontMC name="thermometer" size={50} />
 								{this.state.temp && `${this.state.temp[0]}°C`}
 							</Text>
 						</View>
@@ -169,7 +237,7 @@ class App extends React.Component {
 					<Col style={{ backgroundColor: this.state.colors[2], height: 200 }}>
 						<View style={styles.container}>
 							<Text style={{ fontSize: 30, color: '#FFF' }}>
-							<IconFontMC name="water"  size={50}/>
+								<IconFontMC name="water" size={50} />
 								{this.state.temp && `${this.state.temp[1]}`}%
 							</Text>
 						</View>
@@ -190,9 +258,7 @@ class App extends React.Component {
 						</Text>
 					</Col>
 					<Col style={{ backgroundColor: this.state.colors[6], height: 200 }}>
-						<View style={styles.container}>
-		
-						</View>
+						<View style={styles.container} />
 					</Col>
 				</Grid>
 				<Grid>

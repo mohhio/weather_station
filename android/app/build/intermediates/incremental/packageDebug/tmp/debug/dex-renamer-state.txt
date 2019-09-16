@@ -1,4 +1,4 @@
-#Wed Sep 11 19:29:19 CEST 2019
+#Thu Sep 12 10:24:08 CEST 2019
 base.1=/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.1=classes.dex
 base.0=/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/build/intermediates/transforms/dexMerger/debug/1

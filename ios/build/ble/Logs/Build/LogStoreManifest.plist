@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE</key>
+		<key>B1A03AB9-0C32-450C-BB1F-3308691D698E</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE.xcactivitylog</string>
+			<string>B1A03AB9-0C32-450C-BB1F-3308691D698E.xcactivitylog</string>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
@@ -30,15 +30,15 @@
 			<key>signature</key>
 			<string>Building project ble with scheme ble and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>589222389.90584099</real>
+			<real>590255878.87243199</real>
 			<key>timeStoppedRecording</key>
-			<real>589222390.08118606</real>
+			<real>590255879.80405104</real>
 			<key>title</key>
 			<string>Building project ble with scheme ble and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>54D3EDD7-E90A-457D-B3E7-30CFE29EEFDE</string>
+			<string>B1A03AB9-0C32-450C-BB1F-3308691D698E</string>
 		</dict>
-		<key>B638E5A8-1010-49C9-A79F-83A5970B3E28</key>
+		<key>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -47,7 +47,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>B638E5A8-1010-49C9-A79F-83A5970B3E28.xcactivitylog</string>
+			<string>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF.xcactivitylog</string>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
@@ -62,13 +62,13 @@
 			<key>signature</key>
 			<string>Building project ble with scheme ble and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>589222250.03502703</real>
+			<real>590189369.23451197</real>
 			<key>timeStoppedRecording</key>
-			<real>589222250.23852003</real>
+			<real>590189370.79650903</real>
 			<key>title</key>
 			<string>Building project ble with scheme ble and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>B638E5A8-1010-49C9-A79F-83A5970B3E28</string>
+			<string>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF</string>
 		</dict>
 	</dict>
 </dict>

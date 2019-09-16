@@ -4,7 +4,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "clean1": "cd android && .\\gralew clean"
+    "clean1": "cd android && .\\gralew clean",
+    "clean2": "npm clache clean --force"
   },
   "dependencies": {
     "expo": "^34.0.1",
