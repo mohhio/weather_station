@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, PermissionsAndroid } from 'react-native';
-import App from './App';
+//import App from './App';
 import { BleManager } from 'react-native-ble-plx';
 import base64 from 'react-native-base64';
 import config from './firebase';
@@ -245,7 +245,7 @@ class SmartHome extends React.Component {
 				</Grid>
 				<Grid>
 					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
-						<Button onPress={() => this.scanAndConnect()} title="Podłącz sie do termometra 1" />
+						<Button onPress={() => this.scanAndConnect()} title="Podłącz sie do termometra" />
 					</Col>
 					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
 						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
@@ -270,7 +270,7 @@ class SmartHome extends React.Component {
 	}
 }
 
-export default App;
+export default SmartHome;
 
 const styles = StyleSheet.create({
 	container: {

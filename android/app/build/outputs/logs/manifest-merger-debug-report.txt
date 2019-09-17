@@ -4,6 +4,7 @@ ADDED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml:1:1-56:12
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml:1:1-56:12
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml:1:1-56:12
+MERGED from [:@unimodules_react-native-adapter] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-ble-plx] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-ble-plx/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [:react-native-reanimated] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
@@ -32,9 +33,9 @@ MERGED from [:unimodules-task-manager-interface] /Users/konradhanus/Desktop/Reac
 MERGED from [:unimodules-core] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/@unimodules/core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:unimodules-image-loader-interface] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/unimodules-image-loader-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:unimodules-sensors-interface] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:2:1-12:12
 MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:2:1-18:12
 MERGED from [com.android.support:transition:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/6fc3904fa7c6ccb876c4ef00fc9d298a/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/5b1a6f306e41e12cd948a76253f31380/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/24c84bcb1e322a86690ee3ed6d798647/AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/7d7aacb85125130247235ae6db221eba/AndroidManifest.xml:17:1-24:12
@@ -59,12 +60,12 @@ MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/konradhanus/
 MERGED from [com.android.support:support-compat:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e000c981c5031d67479166d073ef8c7e/AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/b53d0bdb2319e341c913fd819c30ae5e/AndroidManifest.xml:17:1-25:12
 MERGED from [com.android.support:cursoradapter:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/7b732d63d85062e95f07c14ba58654e9/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:2:1-11:12
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/ea7797843e28169b5de4b62b0e2eb408/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:documentfile:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/e9a2e351c5558321a7793b355811ffbc/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/d5895cda69fa88a3568658c9e7ed3333/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:print:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/59b92fbbe154c8ebe09abc94cd0960e4/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/2518a66ff808fe473777b09c21815830/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:interpolator:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6f90148fd46390e9e060b68af74009ea/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/1a7d25b346adcd6ae1b90b41230f1395/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/0c0e20ff0a3b5b80d15a156e7cefdd81/AndroidManifest.xml:17:1-22:12
@@ -217,10 +218,10 @@ MERGED from [:expo-file-system] /Users/konradhanus/Desktop/ReactNative/BLE/pogod
 MERGED from [:expo-file-system] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:5-28:19
 MERGED from [:expo-location] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
 MERGED from [:expo-location] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/expo-location/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-19:19
-MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:16:5-53
-MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:16:5-53
 MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:10:5-20
 MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:10:5-20
+MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:16:5-53
+MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:16:5-53
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/5b1a6f306e41e12cd948a76253f31380/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/5b1a6f306e41e12cd948a76253f31380/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/24c84bcb1e322a86690ee3ed6d798647/AndroidManifest.xml:22:5-27:19
@@ -283,6 +284,8 @@ uses-sdk
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/android/app/src/main/AndroidManifest.xml
+MERGED from [:@unimodules_react-native-adapter] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:@unimodules_react-native-adapter] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/@unimodules/react-native-adapter/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-ble-plx] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/react-native-ble-plx/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -339,12 +342,12 @@ MERGED from [:unimodules-image-loader-interface] /Users/konradhanus/Desktop/Reac
 MERGED from [:unimodules-image-loader-interface] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/unimodules-image-loader-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:unimodules-sensors-interface] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:unimodules-sensors-interface] /Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/node_modules/unimodules-sensors-interface/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:6:5-8:41
 MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:7:5-9:41
 MERGED from [com.polidea.rxandroidble:rxandroidble:1.7.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/rxandroidble-1.7.0.aar/44d1ffb8ac2f0c0ef91d85915c5a987a/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:transition:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/6fc3904fa7c6ccb876c4ef00fc9d298a/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:transition:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/6fc3904fa7c6ccb876c4ef00fc9d298a/AndroidManifest.xml:20:5-44
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:6:5-8:41
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/4b119d837c56a258945fc1eae3fabd4d/AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/5b1a6f306e41e12cd948a76253f31380/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/5b1a6f306e41e12cd948a76253f31380/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/24c84bcb1e322a86690ee3ed6d798647/AndroidManifest.xml:20:5-44
@@ -393,6 +396,8 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/konradhanus/
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/b53d0bdb2319e341c913fd819c30ae5e/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cursoradapter:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/7b732d63d85062e95f07c14ba58654e9/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cursoradapter:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/7b732d63d85062e95f07c14ba58654e9/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:5:5-7:41
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/ea7797843e28169b5de4b62b0e2eb408/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/ea7797843e28169b5de4b62b0e2eb408/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:documentfile:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/e9a2e351c5558321a7793b355811ffbc/AndroidManifest.xml:20:5-44
@@ -403,8 +408,6 @@ MERGED from [com.android.support:print:28.0.0] /Users/konradhanus/.gradle/caches
 MERGED from [com.android.support:print:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/59b92fbbe154c8ebe09abc94cd0960e4/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/2518a66ff808fe473777b09c21815830/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/2518a66ff808fe473777b09c21815830/AndroidManifest.xml:20:5-44
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/86bd2ca7d43e1993aa05c9a79d9e97db/AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:interpolator:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6f90148fd46390e9e060b68af74009ea/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:interpolator:28.0.0] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6f90148fd46390e9e060b68af74009ea/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/konradhanus/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/1a7d25b346adcd6ae1b90b41230f1395/AndroidManifest.xml:20:5-44
