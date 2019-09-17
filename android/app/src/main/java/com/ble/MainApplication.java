@@ -3,6 +3,7 @@ package com.ble;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.polidea.reactnativeble.BlePackage;
 import com.swmansion.reanimated.ReanimatedPackage;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ModuleRegistryAdapter(),
             new VectorIconsPackage(),
             new BlePackage(),
           new ReanimatedPackage(),

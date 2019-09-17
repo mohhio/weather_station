@@ -38,38 +38,6 @@
 			<key>uniqueIdentifier</key>
 			<string>B1A03AB9-0C32-450C-BB1F-3308691D698E</string>
 		</dict>
-		<key>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF.xcactivitylog</string>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>E</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>ble project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>ble</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project ble with scheme ble and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>590189369.23451197</real>
-			<key>timeStoppedRecording</key>
-			<real>590189370.79650903</real>
-			<key>title</key>
-			<string>Building project ble with scheme ble and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>D3A3FE99-4D1D-4735-95CA-2B6C6E3F85EF</string>
-		</dict>
 	</dict>
 </dict>
 </plist>
