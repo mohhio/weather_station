@@ -24,6 +24,13 @@ Aplikacja Webowa,napisana w React, wyswietla wykres na podstawie danych pobieran
 - http://localhost:8000/api/humidity
 
 
+#Jak odpalić aplikację
+1. Musisz miec zainstalowany node i npm
+2. Wejdź do folderu z tam gdzie jest package.json
+3. wpisz na konsole npm install
+4. wpisz na console react-native run-android lub react-native run-ios
+
+
 
 
 

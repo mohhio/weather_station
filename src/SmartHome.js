@@ -8,7 +8,10 @@ import firebase from 'firebase';
 import { Container, Header } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
+import Thermometer from './Thermometer';
 
+import {actionCreator} from './Thermometer/action';
+import { connect } from "react-redux";
 class SmartHome extends React.Component {
 	constructor() {
 		super();
@@ -36,10 +39,11 @@ class SmartHome extends React.Component {
 
 	componentDidMount() {
 		firebase.initializeApp(config);
+		
 		this._interval = setInterval(() => {
 			this.countdownMinus();
 		}, 1000);
-		this.scanAndConnect();
+		//this.scanAndConnect();
 		//this._interval2 = setInterval(() => this.scanAndConnect(), 30000);
 		//setInterval(, 1000);
 	}
@@ -56,7 +60,7 @@ class SmartHome extends React.Component {
 	}
 
 	scanAgain = () => {
-		this.scanAndConnect();
+		this.scanAndConnectSaga();
 	};
 
 	grandPerrmistions = () => {
@@ -78,145 +82,75 @@ class SmartHome extends React.Component {
 		});
 	};
 
-	parser = (string) => {
-		return string.substring(2).split(' H=');
-	};
 
-	scanAndConnect = () => {
-		console.log('start scaning');
 
-		this.manager.startDeviceScan(null, null, (error, device) => {
-			if (error) {
-				return;
-			}
+	
+	// 		//kettle
+	// 		// if (device.name === 'MiKettle') {
+	// 		// 	console.log('znalazł czajnik');
+	// 		// 	device
+	// 		// 		.connect()
+	// 		// 		.then((device) => {
+	// 		// 			console.log(device);
+	// 		// 			return device.discoverAllServicesAndCharacteristics();
+	// 		// 		})
+	// 		// 		.then((device) => {
+	// 		// 			console.log(servicesForDevice);
+	// 		// 			const servicesForDevice = device._manager.servicesForDevice(device.id);
+	// 		// 			return servicesForDevice;
+	// 		// 		})
+	// 		// 		.then((services) => {
+	// 		// 			return services.filter((service) => service.uuid === '01344736-0000-1000-8000-262837236156')[0];
+	// 		// 		})
+	// 		// 		.then((service) => {
+	// 		// 			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
+	// 		// 		})
+	// 		// 		.then((characteristics) => {
+	// 		// 			//0000aa02-0000-1000-8000-00805f9b34fb -status characteristics
 
-			//console.log(device.name);
-			this.setState({ acctual: device.name });
+	// 		// 			//characteristics.map((characteristic)=>{
+	// 		// 				console(characteristics);
+	// 		// 				const characteristic = characteristics[3];
+	// 		// 				characteristic._manager.monitorCharacteristicForDevice(
+	// 		// 					characteristic.deviceID,
+	// 		// 					characteristic.serviceUUID,
+	// 		// 					characteristic.uuid,
+	// 		// 					(error, char) => {
+	// 		// 						console.log(error);
+	// 		// 						console.log(char)
+	// 		// 					}
+	// 		// 				)
 
-			thermometer
-			if (device.name === 'MJ_HT_V1') {
-				this.setState({ acctual: device.name });
-				console.log('znalazł');
+	// 		// 			//console.log(characteristics[1]);
+	// 		// 			return characteristics[1];
+	// 		// 		})
+	// 		// 		// .then((characteristic) => {
+	// 		// 		// 	console.log(characteristic);
+	// 		// 		// 	characteristic._manager.monitorCharacteristicForDevice(
+	// 		// 		// 		characteristic.deviceID,
+	// 		// 		// 		characteristic.serviceUUID,
+	// 		// 		// 		characteristic.uuid,
+	// 		// 		// 		(error, char) => {
+	// 		// 		// 			console.log(error);
+	// 		// 		// 			console.log(char)
+	// 		// 		// 			// const temp = this.parser(base64.decode(char.value));
 
-				device
-					.connect()
-					.then((device) => {
-						return device.discoverAllServicesAndCharacteristics();
-					})
-					.then((device) => {
-						console.log(device._manager);
-						const servicesForDevice = device._manager.servicesForDevice(device.id);
-						return servicesForDevice;
-					})
-					.then((services) => {
-						return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
-					})
-					.then((service) => {
-						console.log(service);
-						return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-					})
-					.then((characteristics) => {
-						return characteristics[0];
-					})
-					.then((characteristic) => {
-						characteristic._manager.monitorCharacteristicForDevice(
-							characteristic.deviceID,
-							characteristic.serviceUUID,
-							characteristic.uuid,
-							(error, char) => {
-								console.log(error);
-								const temp = this.parser(base64.decode(char.value));
+	// 		// 		// 			// this.setState({ temp });
 
-								this.setState({ temp });
+	// 		// 		// 			// const t = parseFloat(temp[0]);
+	// 		// 		// 			// const h = parseFloat(temp[1]);
 
-								const t = parseFloat(temp[0]);
-								const h = parseFloat(temp[1]);
+	// 		// 		// 			// const date = Date.now();
+	// 		// 		// 			// firebase.database().ref('temperature').push({ t, date });
+	// 		// 		// 			// firebase.database().ref('humidity').push({ h, date });
+	// 		// 		// 		}
+	// 		// 		// 	);
 
-								const date = Date.now();
-								firebase.database().ref('temperature').push({ t, date });
-								firebase.database().ref('humidity').push({ h, date });
-							}
-						);
-
-						return characteristic;
-					})
-					.then((characteristic) => {
-						characteristic._manager.stopDeviceScan();
-					})
-					.catch((error) => {
-						//this.scanAgain();
-						console.log(error);
-					});
-				this.manager.stopDeviceScan();
-			}
-
-			//kettle
-			// if (device.name === 'MiKettle') {
-			// 	console.log('znalazł czajnik');
-			// 	device
-			// 		.connect()
-			// 		.then((device) => {
-			// 			console.log(device);
-			// 			return device.discoverAllServicesAndCharacteristics();
-			// 		})
-			// 		.then((device) => {
-			// 			console.log(servicesForDevice);
-			// 			const servicesForDevice = device._manager.servicesForDevice(device.id);
-			// 			return servicesForDevice;
-			// 		})
-			// 		.then((services) => {
-			// 			return services.filter((service) => service.uuid === '01344736-0000-1000-8000-262837236156')[0];
-			// 		})
-			// 		.then((service) => {
-			// 			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-			// 		})
-			// 		.then((characteristics) => {
-			// 			//0000aa02-0000-1000-8000-00805f9b34fb -status characteristics
-
-			// 			//characteristics.map((characteristic)=>{
-			// 				console(characteristics);
-			// 				const characteristic = characteristics[3];
-			// 				characteristic._manager.monitorCharacteristicForDevice(
-			// 					characteristic.deviceID,
-			// 					characteristic.serviceUUID,
-			// 					characteristic.uuid,
-			// 					(error, char) => {
-			// 						console.log(error);
-			// 						console.log(char)
-			// 					}
-			// 				)
-						
-
-			// 			//console.log(characteristics[1]);
-			// 			return characteristics[1];
-			// 		})
-			// 		// .then((characteristic) => {
-			// 		// 	console.log(characteristic);
-			// 		// 	characteristic._manager.monitorCharacteristicForDevice(
-			// 		// 		characteristic.deviceID,
-			// 		// 		characteristic.serviceUUID,
-			// 		// 		characteristic.uuid,
-			// 		// 		(error, char) => {
-			// 		// 			console.log(error);
-			// 		// 			console.log(char)
-			// 		// 			// const temp = this.parser(base64.decode(char.value));
-
-			// 		// 			// this.setState({ temp });
-
-			// 		// 			// const t = parseFloat(temp[0]);
-			// 		// 			// const h = parseFloat(temp[1]);
-
-			// 		// 			// const date = Date.now();
-			// 		// 			// firebase.database().ref('temperature').push({ t, date });
-			// 		// 			// firebase.database().ref('humidity').push({ h, date });
-			// 		// 		}
-			// 		// 	);
-
-			// 		//	return characteristic;
-			// 		//});
-			// }
-		});
-	};
+	// 		// 		//	return characteristic;
+	// 		// 		//});
+	// 		// }
+	// 	});
+	// };
 
 	render() {
 		return (
@@ -245,7 +179,7 @@ class SmartHome extends React.Component {
 				</Grid>
 				<Grid>
 					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
-						<Button onPress={() => this.scanAndConnect()} title="Podłącz sie do termometra" />
+						<Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" />
 					</Col>
 					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
 						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
@@ -261,16 +195,22 @@ class SmartHome extends React.Component {
 						<View style={styles.container} />
 					</Col>
 				</Grid>
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[5], height: 200 }} />
-					<Col style={{ backgroundColor: this.state.colors[7], height: 200 }} />
-				</Grid>
+				<Thermometer />
 			</Container>
 		);
 	}
 }
 
-export default SmartHome;
+
+const mapDispatchToProps = dispatch => ({
+    connect: (manager) => dispatch(actionCreator.connect(manager)),
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(SmartHome);
+
 
 const styles = StyleSheet.create({
 	container: {
