@@ -1,0 +1,140 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "BleEvent"
+provides-nominal:
+- "26react_native_ble_plx_swift8BleEventC"
+provides-member:
+- ["26react_native_ble_plx_swift8BleEventC", ""]
+provides-dynamic-lookup:
+- "disconnectionEvent"
+- "events"
+- "readEvent"
+- "restoreStateEvent"
+- "scanEvent"
+- "stateChangeEvent"
+depends-top-level:
+- "BleEvent"
+- "NSObject"
+depends-member:
+- ["26react_native_ble_plx_swift8BleEventC", "deinit"]
+- ["26react_native_ble_plx_swift8BleEventC", "disconnectionEvent"]
+- ["26react_native_ble_plx_swift8BleEventC", "events"]
+- ["26react_native_ble_plx_swift8BleEventC", "init"]
+- ["26react_native_ble_plx_swift8BleEventC", "readEvent"]
+- ["26react_native_ble_plx_swift8BleEventC", "restoreStateEvent"]
+- ["26react_native_ble_plx_swift8BleEventC", "scanEvent"]
+- ["26react_native_ble_plx_swift8BleEventC", "stateChangeEvent"]
+- ["s7CVarArgP", ""]
+- ["s7CVarArgP", "disconnectionEvent"]
+- !private ["s7CVarArgP", "init"]
+- !private ["s7CVarArgP", "init"]
+- ["s7CVarArgP", "readEvent"]
+- ["s7CVarArgP", "restoreStateEvent"]
+- ["s7CVarArgP", "scanEvent"]
+- ["s7CVarArgP", "stateChangeEvent"]
+- ["s28CustomDebugStringConvertibleP", ""]
+- ["s28CustomDebugStringConvertibleP", "disconnectionEvent"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- ["s28CustomDebugStringConvertibleP", "readEvent"]
+- ["s28CustomDebugStringConvertibleP", "restoreStateEvent"]
+- ["s28CustomDebugStringConvertibleP", "scanEvent"]
+- ["s28CustomDebugStringConvertibleP", "stateChangeEvent"]
+- ["s23CustomStringConvertibleP", ""]
+- ["s23CustomStringConvertibleP", "disconnectionEvent"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- ["s23CustomStringConvertibleP", "readEvent"]
+- ["s23CustomStringConvertibleP", "restoreStateEvent"]
+- ["s23CustomStringConvertibleP", "scanEvent"]
+- ["s23CustomStringConvertibleP", "stateChangeEvent"]
+- ["SQ", ""]
+- ["SQ", "disconnectionEvent"]
+- !private ["SQ", "init"]
+- !private ["SQ", "init"]
+- ["SQ", "readEvent"]
+- ["SQ", "restoreStateEvent"]
+- ["SQ", "scanEvent"]
+- ["SQ", "stateChangeEvent"]
+- ["SH", ""]
+- ["SH", "disconnectionEvent"]
+- !private ["SH", "init"]
+- !private ["SH", "init"]
+- ["SH", "readEvent"]
+- ["SH", "restoreStateEvent"]
+- ["SH", "scanEvent"]
+- ["SH", "stateChangeEvent"]
+- ["So8NSObjectC", ""]
+- ["So8NSObjectC", "disconnectionEvent"]
+- ["So8NSObjectC", "events"]
+- ["So8NSObjectC", "init"]
+- !private ["So8NSObjectC", "init"]
+- ["So8NSObjectC", "readEvent"]
+- ["So8NSObjectC", "restoreStateEvent"]
+- ["So8NSObjectC", "scanEvent"]
+- ["So8NSObjectC", "stateChangeEvent"]
+- ["So8NSObjectP", ""]
+- ["So8NSObjectP", "disconnectionEvent"]
+- !private ["So8NSObjectP", "init"]
+- !private ["So8NSObjectP", "init"]
+- ["So8NSObjectP", "readEvent"]
+- ["So8NSObjectP", "restoreStateEvent"]
+- ["So8NSObjectP", "scanEvent"]
+- ["So8NSObjectP", "stateChangeEvent"]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", ""]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", "disconnectionEvent"]
+- !private ["26react_native_ble_plx_swift18ReactiveCompatibleP", "init"]
+- !private ["26react_native_ble_plx_swift18ReactiveCompatibleP", "init"]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", "readEvent"]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", "restoreStateEvent"]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", "scanEvent"]
+- ["26react_native_ble_plx_swift18ReactiveCompatibleP", "stateChangeEvent"]
+- ["10Foundation27_KeyValueCodingAndObservingP", ""]
+- ["10Foundation27_KeyValueCodingAndObservingP", "disconnectionEvent"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "readEvent"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "restoreStateEvent"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "scanEvent"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "stateChangeEvent"]
+depends-nominal:
+- "26react_native_ble_plx_swift8BleEventC"
+- "s7CVarArgP"
+- "s28CustomDebugStringConvertibleP"
+- "s23CustomStringConvertibleP"
+- "SQ"
+- "SH"
+- "So8NSObjectC"
+- "So8NSObjectP"
+- "26react_native_ble_plx_swift18ReactiveCompatibleP"
+- "10Foundation27_KeyValueCodingAndObservingP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/ios/Pods/Headers/Public/react_native_ble_plx_swift/react-native-ble-plx-swift-umbrella.h"
+- "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/ios/Pods/Headers/Public/react_native_ble_plx_swift/react-native-ble-plx-swift.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreBluetooth.framework/Headers/CoreBluetooth.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
+interface-hash: "b93b5140522d1bdfe67f5e8fe86ee8b6"
