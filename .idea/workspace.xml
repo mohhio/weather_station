@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../../Rock-Paper-Scissors-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../a/mobileLoans" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../demo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../maciej-dziagacz-kodilla-java" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../mobileLoan" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../tasks" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../weather_station" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../weather_station/pogodynka" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../maciej-dziagacz-kodilla-java-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../project_ss/sebastian-sobieraj-kodilla-java" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projekty Kodilla/7-Stream" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projekty Kodilla/kodilla-tests-6.4" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projekty Kodilla/maciej-dziagacz-kodilla-java" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../projekty Kodilla/maciej-dziagacz-kodilla-java-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../tasks" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="813" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+  </component>
+  <component name="RunManager">
+    <configuration name="WeatherStationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="weather_station.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.crud.weather_station.WeatherStationApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
