@@ -1,0 +1,12 @@
+module react_native_ble_plx_swift {
+  umbrella header "react-native-ble-plx-swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+
+module react_native_ble_plx_swift.Swift {
+  header "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/ios/build/ble/Build/Products/Debug-iphonesimulator/react-native-ble-plx-swift/Swift Compatibility Header/react_native_ble_plx_swift-Swift.h"
+  requires objc
+}
