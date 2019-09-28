@@ -1,0 +1,113 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "SchedulePeriodicRecursiveCommand"
+- "SchedulePeriodicRecursive"
+provides-nominal:
+- "26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO"
+- "26react_native_ble_plx_swift25SchedulePeriodicRecursiveC"
+provides-member:
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", ""]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "=="
+- !private ">"
+- "AnyRecursiveScheduler"
+- "AssignmentPrecedence"
+- !private "AtomicDecrement"
+- !private "AtomicIncrement"
+- "AtomicInt"
+- "Disposable"
+- "FloatLiteralType"
+- "IntegerLiteralType"
+- "RxTimeInterval"
+- "SchedulePeriodicRecursive"
+- "SchedulePeriodicRecursiveCommand"
+- "SchedulerType"
+- "Void"
+depends-member:
+- !private ["26react_native_ble_plx_swift21AnyRecursiveSchedulerC", "schedule"]
+- ["SQ", "=="]
+- ["SQ", ""]
+- ["SQ", "_rawHashValue"]
+- ["SQ", "dispatchStart"]
+- ["SQ", "hash"]
+- ["SQ", "hashValue"]
+- ["SQ", "tick"]
+- ["SH", "=="]
+- ["SH", ""]
+- ["SH", "_rawHashValue"]
+- ["SH", "dispatchStart"]
+- ["SH", "hash"]
+- ["SH", "hashValue"]
+- ["SH", "tick"]
+- !private ["s6HasherV", "combine"]
+- !private ["26react_native_ble_plx_swift22ImmediateSchedulerTypeP", "scheduleRecursive"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "AnyRecursiveScheduler"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "AtomicDecrement"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "AtomicIncrement"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "AtomicInt"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "Disposable"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "RecursiveAction"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "RecursiveScheduler"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "RxTimeInterval"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "SchedulePeriodicRecursiveCommand"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "SchedulerType"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "Void"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_action"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_pendingTickCount"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_period"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_scheduler"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_startAfter"]
+- !private ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "_state"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "init"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "start"]
+- ["26react_native_ble_plx_swift25SchedulePeriodicRecursiveC", "tick"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "=="]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "__derived_enum_equals"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "_rawHashValue"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "deinit"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "dispatchStart"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "hash"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "hashValue"]
+- ["26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO", "tick"]
+- !private ["26react_native_ble_plx_swift13SchedulerTypeP", "scheduleRecursive"]
+depends-nominal:
+- !private "26react_native_ble_plx_swift21AnyRecursiveSchedulerC"
+- "SQ"
+- "SH"
+- !private "s6HasherV"
+- !private "26react_native_ble_plx_swift22ImmediateSchedulerTypeP"
+- "26react_native_ble_plx_swift25SchedulePeriodicRecursiveC"
+- "26react_native_ble_plx_swift32SchedulePeriodicRecursiveCommandO"
+- !private "26react_native_ble_plx_swift13SchedulerTypeP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/ios/Pods/Headers/Public/react_native_ble_plx_swift/react-native-ble-plx-swift-umbrella.h"
+- "/Users/konradhanus/Desktop/ReactNative/BLE/pogodynka/ios/Pods/Headers/Public/react_native_ble_plx_swift/react-native-ble-plx-swift.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreBluetooth.framework/Headers/CoreBluetooth.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator12.4.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
+interface-hash: "dd3a3590fbc24e6c427366bec68241b9"
