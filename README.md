@@ -5,9 +5,11 @@ następnie umieszcza je w bazie danych MySql za pośrednictwem API napisane w Ja
 
 # Mobile
 ## Jak uruchomić
- - zainstaluj node.js 
+ 1. zainstaluj node.js ze strony https://nodejs.org/en/
+ 2. wejdź do folderu mobile ```cd mobile```
+ 3. ```npm install``` 
+ 4. ```npm run android``` lub ```npm run ios```
  
-
 # Desktop - Pogodynka Wykres
 
 Aplikacja Webowa,napisana w React, wyswietla wykres na podstawie danych pobieranych z API napisanego w Javie, laczy sie z bazą danych w MySql.
