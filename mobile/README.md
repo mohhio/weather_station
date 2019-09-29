@@ -33,6 +33,18 @@ Aplikacja Webowa,napisana w React, wyswietla wykres na podstawie danych pobieran
 
 
 
+//  Run instructions for iOS:
+• cd mobile && react-native run-ios
+- or -
+• Open mobile/ios/mobile.xcworkspace in Xcode or run "xed -b ios"
+• Hit the Run button
+
+Run instructions for Android:
+• Have an Android emulator running (quickest way to get started), or a device connected.
+• cd mobile && react-native run-android
+
+
+
 
 
 

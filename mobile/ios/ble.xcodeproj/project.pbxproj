@@ -201,7 +201,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = R6JBLAQ685;
+						DevelopmentTeam = 683MXZZR23;
 						LastSwiftMigration = 1030;
 					};
 				};
@@ -392,7 +392,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = R6JBLAQ685;
+				DEVELOPMENT_TEAM = 683MXZZR23;
 				INFOPLIST_FILE = ble/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -400,7 +400,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.intive.ble;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanuscommercialarts.ble;
 				PRODUCT_NAME = ble;
 				SWIFT_OBJC_BRIDGING_HEADER = "ble-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -416,7 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R6JBLAQ685;
+				DEVELOPMENT_TEAM = 683MXZZR23;
 				INFOPLIST_FILE = ble/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -424,7 +424,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.intive.ble;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanuscommercialarts.ble;
 				PRODUCT_NAME = ble;
 				SWIFT_OBJC_BRIDGING_HEADER = "ble-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
