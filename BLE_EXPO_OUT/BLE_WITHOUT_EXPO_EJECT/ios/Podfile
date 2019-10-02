@@ -32,4 +32,7 @@ target 'BLE_EXPO_OUT' do
 
   use_unimodules!
 
+  pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
+  pod 'react-native-ble-plx-swift', :path => '../node_modules/react-native-ble-plx'
+
 end
