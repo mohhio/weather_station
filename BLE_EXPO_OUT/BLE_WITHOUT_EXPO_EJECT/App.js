@@ -1,11 +1,22 @@
 import React from 'react';
+import SmartHome from './src/SmartHome';
+import { Root } from 'native-base';
+import { Provider } from 'react-redux';
+import configStore, { sagaMiddleware } from './store';
+import initSagas from './initSagas'; 
 import { StyleSheet, Text, View } from 'react-native';
+
+const store = configStore();
+
+initSagas(sagaMiddleware);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>TEST2 Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+    <Root>
+    <SmartHome /> 
+    </Root>
+  </Provider>
   );
 }
 
