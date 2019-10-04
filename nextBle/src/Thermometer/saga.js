@@ -3,7 +3,14 @@ import { takeEvery, put, call, take, cancelled, all, fork } from 'redux-saga/eff
 import { CONNECT, SCAN, actionCreator } from './action';
 
 import base64 from 'react-native-base64';
-// import firebase from 'firebase';
+
+import firebase from 'firebase';
+import ReduxSagaFirebase from 'redux-saga-firebase'
+import config from '../firebase';
+
+const myFirebaseApp = firebase.initializeApp(config)
+
+const rsf = new ReduxSagaFirebase(myFirebaseApp);
 
 const parser = (string) => {
 	return string.substring(2).split(' H=');
@@ -104,9 +111,7 @@ export function* onConnectSaga(action) {
 						// const h = parseFloat(temp[1]);
 						// actionCreator.putTemperature(t);
 						// actionCreator.putHumidity(h);
-						// const date = Date.now();
-						//firebase.database().ref('temperature').push({ t, date });
-						//firebase.database().ref('humidity').push({ h, date });
+						
 					}
 				} catch (e) {
 					console.log('e:', e);
@@ -129,8 +134,14 @@ export function* onConnectSaga(action) {
 			}
 			if (temp != null) {
 				yield call(console.log, temp);
-				yield put(actionCreator.putTemperature(temp[0]));
-				yield put(actionCreator.putHumidity(temp[1]));
+				const t  = temp[0];
+				const h  = temp[1];
+				const date = Date.now();
+				yield put(actionCreator.putTemperature(t));
+				yield put(actionCreator.putHumidity(h));
+				
+				yield call(rsf.database.create, 'temperature', { t, date });
+				yield call(rsf.database.create, 'humidity', { h, date });
 				// yield put(actionCreator.putDevice(scannedDevice));
 				// yield put(actionCreator.connect(scannedDevice));
 			}

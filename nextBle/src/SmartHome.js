@@ -40,7 +40,7 @@ class SmartHome extends React.Component {
 
 	componentDidMount() {
 		if (!firebase.apps.length) {
-			firebase.initializeApp({});
+			firebase.initializeApp(config);
 		}
 
 		this._interval = setInterval(() => {
