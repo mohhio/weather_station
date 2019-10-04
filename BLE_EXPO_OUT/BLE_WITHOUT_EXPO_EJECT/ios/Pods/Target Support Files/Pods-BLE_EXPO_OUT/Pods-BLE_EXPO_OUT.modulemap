@@ -1,6 +1,0 @@
-module Pods_BLE_EXPO_OUT {
-  umbrella header "Pods-BLE_EXPO_OUT-umbrella.h"
-
-  export *
-  module * { export * }
-}
