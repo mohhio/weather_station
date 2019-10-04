@@ -1,2 +1,2 @@
 export { firstTestSaga } from './src/containers/Test/saga';
-export { connectSaga } from './src/Thermometer/saga';
+export { connectSaga, scanSaga } from './src/Thermometer/saga';

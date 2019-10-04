@@ -181,7 +181,8 @@ class SmartHome extends React.Component {
 				</Grid>
 				<Grid>
 					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
-						<Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" />
+						{/* <Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" /> */}
+						<Button onPress={() => this.props.scan(this.manager)} title="SCAN" />
 					</Col>
 					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
 						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
@@ -205,7 +206,8 @@ class SmartHome extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    connect: (manager) => dispatch(actionCreator.connect(manager)),
+	connect: (manager) => dispatch(actionCreator.connect(manager)),
+	scan: (manager) => dispatch(actionCreator.scan(manager)),
 });
 
 export default connect(
