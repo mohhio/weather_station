@@ -61,66 +61,143 @@ export function* onScanSaga(action) {
 
 export function* onConnectSaga(action) {
 	const device = action.payload;
+	const manager = device._manager;
 	console.log('device >>>>', device);
 
 	console.log('Actual device:' + device.name);
-    console.log('znalazł');
-    
-	device
-		.connect()
-		.then((device) => {
-			return device.discoverAllServicesAndCharacteristics();
-		})
-		.then((device) => {
-			console.log(device._manager);
-			const servicesForDevice = device._manager.servicesForDevice(device.id);
-			return servicesForDevice;
-		})
-		.then((services) => {
-			return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
-		})
-		.then((service) => {
-			console.log(service);
-			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-		})
-		.then((characteristics) => {
-			return characteristics[0];
-		})
-		.then((characteristic) => {
-			characteristic._manager.monitorCharacteristicForDevice(
-				characteristic.deviceID,
-				characteristic.serviceUUID,
-				characteristic.uuid,
-				(error, char) => {
-					try {
-						if (char.value !== null) {
-							//const temp = base64.decode(char.value);
+	console.log('znalazł');
+
+	const connect = yield call([ device, device.connect ]);
+	yield call(console.log, connect);
+	yield call([ connect, connect.discoverAllServicesAndCharacteristics ]);
+
+	const servicesForDevice = yield call([ manager, manager.servicesForDevice ], device.id);
+	const service = servicesForDevice.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
+
+	yield call(console.log, service);
+	const characteristics = yield call([ manager, manager.characteristicsForDevice ], service.deviceID, service.uuid);
+	const characteristic = characteristics[0];
+	yield call(console.log, characteristic);
+
+	const temperatureChannel = yield eventChannel((emit) => {
+		let emitting = true;
+		characteristic._manager.monitorCharacteristicForDevice(
+			characteristic.deviceID,
+			characteristic.serviceUUID,
+			characteristic.uuid,
+			(error, char) => {
+				try {
+					if (char.value !== null) {
+						if (emitting) {
 							const temp = parser(base64.decode(char.value));
-							console.log('temperatura:' + temp);
-							//this.setState({ temp });
-							const t = parseFloat(temp[0]);
-							const h = parseFloat(temp[1]);
-							actionCreator.putTemperature(t);
-							actionCreator.putHumidity(h);
-							const date = Date.now();
-							//firebase.database().ref('temperature').push({ t, date });
-							//firebase.database().ref('humidity').push({ h, date });
+							console.log('Before emit>>>', temp);
+							emit([ error, temp ]);
+							//emitting = false;
+						} else {
+							emit(END);
 						}
-					} catch (e) {
-						console.log('e:', e);
-						console.log('error', error);
+						// //const temp = base64.decode(char.value);
+
+						// console.log('temperatura:' + temp);
+						// //this.setState({ temp });
+						// const t = parseFloat(temp[0]);
+						// const h = parseFloat(temp[1]);
+						// actionCreator.putTemperature(t);
+						// actionCreator.putHumidity(h);
+						// const date = Date.now();
+						//firebase.database().ref('temperature').push({ t, date });
+						//firebase.database().ref('humidity').push({ h, date });
 					}
+				} catch (e) {
+					console.log('e:', e);
+					console.log('error', error);
+					emit(END);
 				}
-			);
-			return characteristic;
-		})
-		.then((characteristic) => {
-			characteristic._manager.stopDeviceScan();
-		})
-		.catch((error) => {
-			//this.scanAgain();
-			console.log(error);
-		});
+			}
+		);
+		return () => {
+			console.log('sie rozlaczylo');
+			// manager.stopDeviceScan();
+		};
+	}, buffers.expanding(1));
+
+	try {
+		while (true) {
+			const [ error, temp ] = yield take(temperatureChannel);
+
+			if (error != null) {
+			}
+			if (temp != null) {
+				yield call(console.log, temp);
+				yield put(actionCreator.putTemperature(temp[0]));
+				yield put(actionCreator.putHumidity(temp[1]));
+				// yield put(actionCreator.putDevice(scannedDevice));
+				// yield put(actionCreator.connect(scannedDevice));
+			}
+		}
+	} catch (error) {
+	} finally {
+		yield call(console.log, 'Temperature stopped...');
+		if (yield cancelled()) {
+			temperatureChannel.close();
+		}
+	}
+
+	// device
+	// 	.connect()
+	// 	.then((device) => {
+	// 		return device.discoverAllServicesAndCharacteristics();
+	// 	})
+	// 	.then((device) => {
+	// 		console.log(device._manager);
+	// 		const servicesForDevice = device._manager.servicesForDevice(device.id);
+	// 		return servicesForDevice;
+	// 	})
+	// 	.then((services) => {
+	// 		return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
+	// 	})
+	// 	.then((service) => {
+	// 		console.log(service);
+	// 		return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
+	// 	})
+	// 	.then((characteristics) => {
+	// 		return characteristics[0];
+	// 	})
+	// 	.then((characteristic) => {
+	// 		characteristic._manager.monitorCharacteristicForDevice(
+	// 			characteristic.deviceID,
+	// 			characteristic.serviceUUID,
+	// 			characteristic.uuid,
+	// 			(error, char) => {
+	// 				try {
+	// 					if (char.value !== null) {
+	// 						//const temp = base64.decode(char.value);
+	// 						const temp = parser(base64.decode(char.value));
+	// 						console.log('temperatura:' + temp);
+	// 						//this.setState({ temp });
+	// 						const t = parseFloat(temp[0]);
+	// 						const h = parseFloat(temp[1]);
+	// 						actionCreator.putTemperature(t);
+	// 						actionCreator.putHumidity(h);
+	// 						const date = Date.now();
+	// 						//firebase.database().ref('temperature').push({ t, date });
+	// 						//firebase.database().ref('humidity').push({ h, date });
+	// 					}
+	// 				} catch (e) {
+	// 					console.log('e:', e);
+	// 					console.log('error', error);
+	// 				}
+	// 			}
+	// 		);
+	// 		return characteristic;
+	// 	})
+	// 	.then((characteristic) => {
+	// 		characteristic._manager.stopDeviceScan();
+	// 	})
+	// 	.catch((error) => {
+	// 		//this.scanAgain();
+	// 		console.log(error);
+	// 	});
 	//manager.stopDeviceScan();
 }
 

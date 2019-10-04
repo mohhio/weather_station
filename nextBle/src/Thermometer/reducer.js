@@ -9,15 +9,16 @@ const initiaState = {
 export function reducer(state = initiaState, action) {
 	switch (action.type) {
 		case PUT_TEMPERATURE:
+      console.log('>aaaaaaaaaaaaa',action.payload);
         return {
           ...state,
-          temperature: [...temperature, action.payload]
+          temperature: [...state.temperature, action.payload]
       };
 			
 		case PUT_HUMIDITY:
         return {
           ...state,
-          humidity: [...humidity, action.payload]
+          humidity: [...state.humidity, action.payload]
       };
       break;
     case PUT_DEVICE:{

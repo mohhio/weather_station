@@ -10,8 +10,9 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 // import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
 import Thermometer from './Thermometer';
 
-import {actionCreator} from './Thermometer/action';
-import { connect } from "react-redux";
+import { actionCreator } from './Thermometer/action';
+import { connect } from 'react-redux';
+import { thermometerSaga } from './Thermometer/saga';
 class SmartHome extends React.Component {
 	constructor() {
 		super();
@@ -41,7 +42,7 @@ class SmartHome extends React.Component {
 		if (!firebase.apps.length) {
 			firebase.initializeApp({});
 		}
-		
+
 		this._interval = setInterval(() => {
 			this.countdownMinus();
 		}, 1000);
@@ -84,9 +85,6 @@ class SmartHome extends React.Component {
 		});
 	};
 
-
-
-	
 	// 		//kettle
 	// 		// if (device.name === 'MiKettle') {
 	// 		// 	console.log('znalazł czajnik');
@@ -166,7 +164,7 @@ class SmartHome extends React.Component {
 						<View style={styles.container}>
 							<Text style={{ fontSize: 30, color: '#FFF' }}>
 								{/* <IconFontMC name="thermometer" size={50} /> */}
-								{this.state.temp && `${this.state.temp[0]}°C`}
+								{this.props.temperature.length > 0 && `${this.props.temperature[this.props.temperature.length-1]}°C`}
 							</Text>
 						</View>
 					</Col>
@@ -174,7 +172,7 @@ class SmartHome extends React.Component {
 						<View style={styles.container}>
 							<Text style={{ fontSize: 30, color: '#FFF' }}>
 								{/* <IconFontMC name="water" size={50} /> */}
-								{this.state.temp && `${this.state.temp[1]}`}%
+								{this.props.humidity.length > 0 && `${this.props.humidity[this.props.humidity.length-1]}%`}
 							</Text>
 						</View>
 					</Col>
@@ -204,17 +202,18 @@ class SmartHome extends React.Component {
 	}
 }
 
-
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
 	connect: (manager) => dispatch(actionCreator.connect(manager)),
-	scan: (manager) => dispatch(actionCreator.scan(manager)),
+	scan: (manager) => dispatch(actionCreator.scan(manager))
 });
 
 export default connect(
-    null,
-    mapDispatchToProps
+	(state) => ({
+		temperature: state.thermometer.temperature,
+		humidity: state.thermometer.humidity
+	}),
+	mapDispatchToProps
 )(SmartHome);
-
 
 const styles = StyleSheet.create({
 	container: {

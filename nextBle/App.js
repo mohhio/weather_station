@@ -13,7 +13,7 @@ initSagas(sagaMiddleware);
 export default function App() {
   return (
     <Provider store={store}>
-    <Root><Text>aaabbcc</Text>
+    <Root>
     <SmartHome />
     </Root>
   </Provider>
