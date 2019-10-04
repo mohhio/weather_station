@@ -1,8 +1,9 @@
-import { PUT_TEMPERATURE, PUT_HUMIDITY } from './action';
+import { PUT_TEMPERATURE, PUT_HUMIDITY, PUT_DEVICE } from './action';
 
 const initiaState = {
   temperature: [],
-  humidity: []
+  humidity: [], 
+  device: null
 };
 
 export function reducer(state = initiaState, action) {
@@ -18,7 +19,13 @@ export function reducer(state = initiaState, action) {
           ...state,
           humidity: [...humidity, action.payload]
       };
-			break;
+      break;
+    case PUT_DEVICE:{
+        return {
+          ...state,
+          device: action.payload
+        }
+    }
 		default:
 			return state;
 	}

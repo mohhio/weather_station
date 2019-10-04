@@ -1,5 +1,5 @@
 import { eventChannel, buffers, END } from 'redux-saga';
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { takeEvery, put, call, take, cancelled, all, fork } from 'redux-saga/effects';
 import { CONNECT, SCAN, actionCreator } from './action';
 
 import base64 from 'react-native-base64';
@@ -12,12 +12,9 @@ const parser = (string) => {
 export function* onScanSaga(action) {
 	//sprawdzenie czy mozemy skanowac?
 	const manager = action.payload;
-	//console.log(manager);
-	//yield call(console.log, 'Scanning started...');
 	const scanningChannel = yield eventChannel((emit) => {
-        let scanning = true;
+		let scanning = true;
 		manager.startDeviceScan(null, { allowDuplicates: true }, (error, scannedDevice) => {
-			
 			console.log(scannedDevice.name);
 
 			if (error) {
@@ -27,8 +24,8 @@ export function* onScanSaga(action) {
 			if (scanning) {
 				if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
 					console.log('znalazl termomter');
-                    emit([ error, scannedDevice ]);
-                    scanning = false;
+					emit([ error, scannedDevice ]);
+					scanning = false;
 				}
 			} else {
 				console.log('zamkniecie');
@@ -42,101 +39,89 @@ export function* onScanSaga(action) {
 	}, buffers.expanding(1));
 
 	try {
-		for (;;) {
+		while (true) {
 			const [ error, scannedDevice ] = yield take(scanningChannel);
 
-			yield call(console.log, scannedDevice);
-			console.log('test');
 			if (error != null) {
 			}
 			if (scannedDevice != null) {
-				//  yield call(console.log,'scan:',scannedDevice);
-				// yield put(sensorTagFound(scannedDevice));
+				yield call(console.log, 'scan:', scannedDevice);
+				yield put(actionCreator.putDevice(scannedDevice));
+				yield put(actionCreator.connect(scannedDevice));
 			}
 		}
 	} catch (error) {
 	} finally {
 		yield call(console.log, 'Scanning stopped...');
-		// if (yield cancelled()) {
-		//   scanningChannel.close();
-		// }
+		if (yield cancelled()) {
+			scanningChannel.close();
+		}
 	}
 }
 
 export function* onConnectSaga(action) {
-	// alert('leci z sagi');
-	// console.log(action.payload);
-	// console.log('z sagi connect');
-	// console.log('start scaning');
-	// const manager = action.payload;
-	//    // firebase.initializeApp(config);
-	// manager.startDeviceScan(null, null, (error, device) => {
-	//     if (error) {
-	//         return;
-	//     }
-	//     //console.log(device.name);
-	//     console.log("Actual device:"+device.name )
-	//     if (device.name === 'MJ_HT_V1') {
-	//         console.log("Actual device:"+device.name )
-	//         console.log('znalazł');
-	//         device
-	//             .connect()
-	//             .then((device) => {
-	//                 return device.discoverAllServicesAndCharacteristics();
-	//             })
-	//             .then((device) => {
-	//                 console.log(device._manager);
-	//                 const servicesForDevice = device._manager.servicesForDevice(device.id);
-	//                 return servicesForDevice;
-	//             })
-	//             .then((services) => {
-	//                 return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
-	//             })
-	//             .then((service) => {
-	//                 console.log(service);
-	//                 return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-	//             })
-	//             .then((characteristics) => {
-	//                 return characteristics[0];
-	//             })
-	//             .then((characteristic) => {
-	//                 characteristic._manager.monitorCharacteristicForDevice(
-	//                     characteristic.deviceID,
-	//                     characteristic.serviceUUID,
-	//                     characteristic.uuid,
-	//                     (error, char) => {
-	//                         try {
-	//                             if (char.value !== null) {
-	//                                 //const temp = base64.decode(char.value);
-	//                                 const temp = parser(base64.decode(char.value));
-	//                                 console.log("temperatura:"+temp)
-	//                                 //this.setState({ temp });
-	//                                 const t = parseFloat(temp[0]);
-	//                                 const h = parseFloat(temp[1]);
-	//                                 actionCreator.putTemperature(t);
-	//                                 actionCreator.putHumidity(h);
-	//                                 const date = Date.now();
-	//                                 //firebase.database().ref('temperature').push({ t, date });
-	//                                 //firebase.database().ref('humidity').push({ h, date });
-	//                             }
-	//                         } catch (e) {
-	//                             console.log('e:', e);
-	//                             console.log('error',error);
-	//                         }
-	//                     }
-	//                 );
-	//                 return characteristic;
-	//             })
-	//             .then((characteristic) => {
-	//                 characteristic._manager.stopDeviceScan();
-	//             })
-	//             .catch((error) => {
-	//                 //this.scanAgain();
-	//                 console.log(error);
-	//             });
-	//         manager.stopDeviceScan();
-	//     }
-	// });
+	const device = action.payload;
+	console.log('device >>>>', device);
+
+	console.log('Actual device:' + device.name);
+    console.log('znalazł');
+    
+	device
+		.connect()
+		.then((device) => {
+			return device.discoverAllServicesAndCharacteristics();
+		})
+		.then((device) => {
+			console.log(device._manager);
+			const servicesForDevice = device._manager.servicesForDevice(device.id);
+			return servicesForDevice;
+		})
+		.then((services) => {
+			return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
+		})
+		.then((service) => {
+			console.log(service);
+			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
+		})
+		.then((characteristics) => {
+			return characteristics[0];
+		})
+		.then((characteristic) => {
+			characteristic._manager.monitorCharacteristicForDevice(
+				characteristic.deviceID,
+				characteristic.serviceUUID,
+				characteristic.uuid,
+				(error, char) => {
+					try {
+						if (char.value !== null) {
+							//const temp = base64.decode(char.value);
+							const temp = parser(base64.decode(char.value));
+							console.log('temperatura:' + temp);
+							//this.setState({ temp });
+							const t = parseFloat(temp[0]);
+							const h = parseFloat(temp[1]);
+							actionCreator.putTemperature(t);
+							actionCreator.putHumidity(h);
+							const date = Date.now();
+							//firebase.database().ref('temperature').push({ t, date });
+							//firebase.database().ref('humidity').push({ h, date });
+						}
+					} catch (e) {
+						console.log('e:', e);
+						console.log('error', error);
+					}
+				}
+			);
+			return characteristic;
+		})
+		.then((characteristic) => {
+			characteristic._manager.stopDeviceScan();
+		})
+		.catch((error) => {
+			//this.scanAgain();
+			console.log(error);
+		});
+	//manager.stopDeviceScan();
 }
 
 export function* connectSaga() {
@@ -145,4 +130,8 @@ export function* connectSaga() {
 
 export function* scanSaga() {
 	yield takeEvery(SCAN, onScanSaga);
+}
+
+export function* thermometerSaga() {
+	yield all([ fork(scanSaga), fork(connectSaga) ]);
 }
