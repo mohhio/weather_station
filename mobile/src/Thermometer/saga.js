@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import ReduxSagaFirebase from 'redux-saga-firebase';
 import config from '../firebase';
 import { actionCreator as log } from './../Log/action';
+import { actionCreator as miKettleActionCreator } from '../Kettle/action';
 const myFirebaseApp = firebase.initializeApp(config);
 
 const rsf = new ReduxSagaFirebase(myFirebaseApp);
@@ -31,8 +32,14 @@ export function* onScanSaga(action) {
 				return;
 			}
 			if (scanning) {
-				if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
-					console.log('znalazl termomter');
+				// if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
+				// 	console.log('znalazl termomter');
+				// 	emit([ error, scannedDevice ]);
+				// 	scanning = false;
+				// }
+
+				if (scannedDevice != null && scannedDevice.localName === 'MiKettle') {
+					console.log('znalazl czajnik');
 					emit([ error, scannedDevice ]);
 					scanning = false;
 				}
@@ -58,10 +65,16 @@ export function* onScanSaga(action) {
 			if (error === 'miss' && scannedDevice != null) {
 				yield put(log.addLog(scannedDevice.name));
 			} else {
-				if (scannedDevice != null) {
+				if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
 					yield call(console.log, 'scan:', scannedDevice);
 					yield put(actionCreator.putDevice(scannedDevice));
 					yield put(actionCreator.connect(scannedDevice));
+				}
+
+				if (scannedDevice != null && scannedDevice.localName === 'MiKettle') {
+					yield call(console.log, 'scan:', scannedDevice);
+					yield put(miKettleActionCreator.putDevice(scannedDevice));
+					yield put(miKettleActionCreator.connect(scannedDevice));
 				}
 			}
 		}
