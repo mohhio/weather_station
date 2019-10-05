@@ -9,7 +9,7 @@ import { Container, Header } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 // import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
 import Thermometer from './Thermometer';
-
+import Kettle from './Kettle';
 import { actionCreator } from './Thermometer/action';
 import { connect } from 'react-redux';
 import { thermometerSaga } from './Thermometer/saga';
@@ -155,43 +155,43 @@ class SmartHome extends React.Component {
 	render() {
 		return (
 			<Container>
-				<Header />
-				<Thermometer colors={this.state.colors} />
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
-						{/* <Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" /> */}
-						<Button onPress={() => this.props.scan(this.manager)} title="SCAN" />
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
-						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
-					</Col>
-				</Grid>
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[3], height: 200 }}>
-						<Text style={{ fontSize: 15, color: '#FFF' }}>
-							{this.state.countdown} - {this.state.acctual}
-						</Text>
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[6], height: 200 }}>
-						<View style={styles.container} />
-					</Col>
-				</Grid>
-				<Grid>
-					<Col style={{ backgroundColor: 'black', height: 151 }}>
-						<ScrollView
-							ref={(ref) => (this.scrollView = ref)}
-							onContentSizeChange={(contentWidth, contentHeight) => {
-								this.scrollView.scrollToEnd({ animated: true });
-							}}
-						>
-							{this.props.log.map((log, key) => (
-								<Text key={key} style={{ color: '#00FF41' }}>
-									{log}
-								</Text>
-							))}
-						</ScrollView>
-					</Col>
-				</Grid>
+				<ScrollView>
+					<Header />
+					<Thermometer
+						colors={this.state.colors}
+						grandPerrmistions={this.grandPerrmistions}
+						manager={this.manager}
+					/>
+					<Grid>
+						<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
+							{this.props.temperature.length > 0 && (
+								<Button onPress={() => this.props.scan(this.manager)} title="SCAN" />
+							)}
+						</Col>
+						<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
+							<Text style={{ fontSize: 15, color: '#FFF' }}>
+								{this.state.countdown} - {this.state.acctual}
+							</Text>
+						</Col>
+					</Grid>
+					<Kettle colors={this.state.colors} manager={this.manager} />
+					<Grid>
+						<Col style={{ backgroundColor: 'black', height: 151 }}>
+							<ScrollView
+								ref={(ref) => (this.scrollView = ref)}
+								onContentSizeChange={(contentWidth, contentHeight) => {
+									this.scrollView.scrollToEnd({ animated: true });
+								}}
+							>
+								{this.props.log.map((log, key) => (
+									<Text key={key} style={{ color: '#00FF41' }}>
+										{log}
+									</Text>
+								))}
+							</ScrollView>
+						</Col>
+					</Grid>
+				</ScrollView>
 			</Container>
 		);
 	}
@@ -204,6 +204,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	(state) => ({
+		temperature: state.thermometer.temperature,
 		log: state.log.log
 	}),
 	mapDispatchToProps
