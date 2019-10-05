@@ -18,9 +18,9 @@ public class Temperature {
     @NotNull
     private Long id;
 
-    @Column(name = "dataTime")
+    @Column(name = "date_Time")
     @NotNull
-    private String dataTime;
+    private String dateTime;
 
     @Column(name = "value")
     @NotNull

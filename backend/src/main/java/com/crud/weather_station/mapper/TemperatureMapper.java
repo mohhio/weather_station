@@ -12,14 +12,14 @@ public class TemperatureMapper {
     public Temperature mapToTemperature(final TemperatureDto temperatureDto) {
         return new Temperature(
                 temperatureDto.getId(),
-                temperatureDto.getDataTime(),
+                temperatureDto.getDateTime(),
                 temperatureDto.getValue());
     }
 
     public TemperatureDto mapToTemperatureDto(final Temperature temperature) {
         return new TemperatureDto(
                 temperature.getId(),
-                temperature.getDataTime(),
+                temperature.getDateTime(),
                 temperature.getValue());
     }
 
@@ -27,7 +27,7 @@ public class TemperatureMapper {
         return temperatureList.stream()
                 .map(temperature -> new TemperatureDto(
                         temperature.getId(),
-                        temperature.getDataTime(),
+                        temperature.getDateTime(),
                         temperature.getValue()))
                 .collect(Collectors.toList());
     }

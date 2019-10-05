@@ -31,7 +31,7 @@ public class HumidityController {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public HumidityDto updateHumidity(@RequestBody HumidityDto humidityDto) {
-        return humidityMapper.mapToHumidotyDto(dbService.saveHumidity(humidityMapper.mapToHumidity(humidityDto)));
+        return humidityMapper.mapToHumidityDto(dbService.saveHumidity(humidityMapper.mapToHumidity(humidityDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
