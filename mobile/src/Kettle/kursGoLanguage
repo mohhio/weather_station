@@ -1,0 +1,56 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+const KeySize = 256
+
+func cipherInit(key []byte) []byte {
+	var perm = make([]byte, KeySize)
+	for i := range perm {
+		perm[i] = byte(i)
+	}
+	var j uint8
+	keyLen := uint8(len(key))
+	for ia := range perm {
+		j += perm[ia] + key[uint8(ia)%keyLen]
+		perm[ia], perm[j] = perm[j], perm[ia]
+	}
+	return perm
+}
+
+func cipherCrypt(input, perm []byte) []byte {
+	var index1, index2 uint8
+	output := make([]byte, len(input))
+	for i := 0; i < len(input); i++ {
+		index1++
+		index2 += perm[index1]
+		perm[index1], perm[index2] = perm[index2], perm[index1]
+		idx := perm[index1] + perm[index2]
+		output[i] = input[i] ^ perm[idx]
+	}
+	return output
+}
+
+func cipher(key, input []byte) []byte {
+	perm := cipherInit(key)
+	return cipherCrypt(input, perm)
+}
+
+func mixA(mac []byte, productID int) []byte {
+	return []byte{mac[0], mac[2], mac[5], uint8(productID & 0xff), uint8(productID & 0xff), mac[4], mac[5], mac[1]}
+}
+
+func mixB(mac []byte, productID int) []byte {
+	return []byte{mac[0], mac[2], mac[5], uint8((productID >> 8) & 0xff), mac[4], mac[0], mac[5], uint8(productID & 0xff)}
+}
+
+func main() {
+  cipher(mixA(reversedMac, productID), token)
+  const reversedMac = [0x57 0x8A 0x33 0x6F 0x7C 0xB8];
+  const productID = 131;
+  const token = 37 c8 2b 4b c5 9c 83 09 de f0 13 9c;
+
+  fmt.Println(cipher(mixA(reversedMac, productID), token))
+}
