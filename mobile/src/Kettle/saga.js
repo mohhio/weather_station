@@ -2,6 +2,7 @@ import {CONNECT, SCAN} from './action';
 import { eventChannel, buffers, END } from 'redux-saga';
 import { takeEvery, put, call, take, cancelled, all, fork } from 'redux-saga/effects';
 import { actionCreator as log } from './../Log/action';
+import base64 from 'react-native-base64';
 
 export function* onConnectSaga(action)
 {
@@ -65,46 +66,67 @@ export function* onConnectSaga(action)
 	// console.log("CHARAKTERYSTYKA dla serwisu:", service5.uuid);
 	// console.log(characteristics5);
 
-	const characteristics6 = yield call([ manager, manager.characteristicsForDevice ], service6.deviceID, service6.uuid);
-	console.log("CHARAKTERYSTYKA dla serwisu:", service6.uuid);
-	console.log(characteristics6);
 
-	yield put(log.addLog('Charakterystyki pobrane'));
 
-	 const characteristic = characteristics6[0];
-	 yield call(console.log, characteristic);
-	 yield put(log.addLog('Rozpoczęcie nasłuchiwania na dane'));
+	//authentication
+	// service4
+	const characteristics4 = yield call([ manager, manager.characteristicsForDevice ], service4.deviceID, service4.uuid);
+	console.log("CHARAKTERYSTYKA dla serwisu 4:", service4.uuid);
+	console.log();
+	const characteristic = characteristics4[0];
+	const reversedMac = base64.encode("0x57 0x8A 0x33 0x6F 0x7C 0xB8");
+	const send1 = "0x90, 0xCA, 0x85, 0xDE";
+	const productId = '131';
+	const token = "37 c8 2b 4b c5 9c 83 09 de f0 13 9c";
+	// const cipher; 
+	// const mixA;
+	// const mixB;
+	const writeCharacteristicWithResponseForDevice = yield call([ manager, manager.writeCharacteristicWithResponseForDevice], characteristic.deviceID, characteristic.serviceUUID, characteristic.uuid, send1);
+	console.log(base64.decode(writeCharacteristicWithResponseForDevice.value));
+	//end authentication
 
-	const channel = yield eventChannel((emit) => {
-		let emitting = true;
-		characteristic._manager.monitorCharacteristicForDevice(
-			characteristic.deviceID,
-			characteristic.serviceUUID,
-			characteristic.uuid,
-			(error, char) => {
-				try {
-					if (char.value !== null) {
-						if (emitting) {
-							// const temp = base64.decode(char.value);
-							console.log('Before emit>>>', char);
-							// emit([ error, temp ]);
-							//emitting = false;
-						} else {
-							emit(END);
-						}
-					}
-				} catch (e) {
-					console.log('e:', e);
-					console.log('error', error);
-					emit(END);
-				}
-			}
-		);
-		return () => {
-			console.log('sie rozlaczylo');
-			// manager.stopDeviceScan();
-		};
-	}, buffers.expanding(1));
+
+
+	// const characteristics6 = yield call([ manager, manager.characteristicsForDevice ], service6.deviceID, service6.uuid);
+	// console.log("CHARAKTERYSTYKA dla serwisu:", service6.uuid);
+	// console.log(characteristics6);
+
+	// yield put(log.addLog('Charakterystyki pobrane'));
+
+	//  const characteristic = characteristics6[0];
+	//  yield call(console.log, characteristic);
+	//  yield put(log.addLog('Rozpoczęcie nasłuchiwania na dane'));
+
+	// const channel = yield eventChannel((emit) => {
+	// 	let emitting = true;
+	// 	characteristic._manager.monitorCharacteristicForDevice(
+	// 		characteristic.deviceID,
+	// 		characteristic.serviceUUID,
+	// 		characteristic.uuid,
+	// 		(error, char) => {
+	// 			try {
+	// 				if (char.value !== null) {
+	// 					if (emitting) {
+	// 						// const temp = base64.decode(char.value);
+	// 						console.log('Before emit>>>', char);
+	// 						// emit([ error, temp ]);
+	// 						//emitting = false;
+	// 					} else {
+	// 						emit(END);
+	// 					}
+	// 				}
+	// 			} catch (e) {
+	// 				console.log('e:', e);
+	// 				console.log('error', error);
+	// 				emit(END);
+	// 			}
+	// 		}
+	// 	);
+	// 	return () => {
+	// 		console.log('sie rozlaczylo');
+	// 		// manager.stopDeviceScan();
+	// 	};
+	// }, buffers.expanding(1));
 
 	// try {
 	// 	while (true) {
