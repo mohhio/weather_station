@@ -5,10 +5,10 @@ import { CONNECT, SCAN, actionCreator } from './action';
 import base64 from 'react-native-base64';
 
 import firebase from 'firebase';
-import ReduxSagaFirebase from 'redux-saga-firebase'
+import ReduxSagaFirebase from 'redux-saga-firebase';
 import config from '../firebase';
-
-const myFirebaseApp = firebase.initializeApp(config)
+import { actionCreator as log } from './../Log/action';
+const myFirebaseApp = firebase.initializeApp(config);
 
 const rsf = new ReduxSagaFirebase(myFirebaseApp);
 
@@ -19,11 +19,13 @@ const parser = (string) => {
 export function* onScanSaga(action) {
 	//sprawdzenie czy mozemy skanowac?
 	const manager = action.payload;
+	yield put(log.addLog('Skanownie rozpoczętne...'));
 	const scanningChannel = yield eventChannel((emit) => {
 		let scanning = true;
-		manager.startDeviceScan(null, { allowDuplicates: true }, (error, scannedDevice) => {
-			console.log(scannedDevice.name);
 
+		manager.startDeviceScan(null, { allowDuplicates: false }, (error, scannedDevice) => {
+			console.log(scannedDevice.name);
+			emit([ 'miss', scannedDevice ]);
 			if (error) {
 				emit([ error, scannedDevice ]);
 				return;
@@ -49,17 +51,24 @@ export function* onScanSaga(action) {
 		while (true) {
 			const [ error, scannedDevice ] = yield take(scanningChannel);
 
+			
+
 			if (error != null) {
 			}
-			if (scannedDevice != null) {
-				yield call(console.log, 'scan:', scannedDevice);
-				yield put(actionCreator.putDevice(scannedDevice));
-				yield put(actionCreator.connect(scannedDevice));
+			if (error === 'miss' && scannedDevice != null) {
+				yield put(log.addLog(scannedDevice.name));
+			} else {
+				if (scannedDevice != null) {
+					yield call(console.log, 'scan:', scannedDevice);
+					yield put(actionCreator.putDevice(scannedDevice));
+					yield put(actionCreator.connect(scannedDevice));
+				}
 			}
 		}
 	} catch (error) {
 	} finally {
 		yield call(console.log, 'Scanning stopped...');
+		yield put(log.addLog('Skanownie zakończone...'));
 		if (yield cancelled()) {
 			scanningChannel.close();
 		}
@@ -69,23 +78,32 @@ export function* onScanSaga(action) {
 export function* onConnectSaga(action) {
 	const device = action.payload;
 	const manager = device._manager;
-	console.log('device >>>>', device);
 
 	console.log('Actual device:' + device.name);
-	console.log('znalazł');
+	yield put(log.addLog('Łącze z ' + device.name));
 
+	try {
+		yield call([ device, device.cancelConnection ]);
+	} catch (e) {
+		console.log('eetam');
+	}
 	const connect = yield call([ device, device.connect ]);
 	yield call(console.log, connect);
+
 	yield call([ connect, connect.discoverAllServicesAndCharacteristics ]);
+	yield put(log.addLog('Serwisy i charakterystyki odkryte'));
 
 	const servicesForDevice = yield call([ manager, manager.servicesForDevice ], device.id);
+	yield put(log.addLog('Serwisy pobrane'));
+
 	const service = servicesForDevice.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
 
 	yield call(console.log, service);
 	const characteristics = yield call([ manager, manager.characteristicsForDevice ], service.deviceID, service.uuid);
+	yield put(log.addLog('Charakterystyki pobrane'));
 	const characteristic = characteristics[0];
 	yield call(console.log, characteristic);
-
+	yield put(log.addLog('Rozpoczęcie nasłuchiwania na dane'));
 	const temperatureChannel = yield eventChannel((emit) => {
 		let emitting = true;
 		characteristic._manager.monitorCharacteristicForDevice(
@@ -103,15 +121,6 @@ export function* onConnectSaga(action) {
 						} else {
 							emit(END);
 						}
-						// //const temp = base64.decode(char.value);
-
-						// console.log('temperatura:' + temp);
-						// //this.setState({ temp });
-						// const t = parseFloat(temp[0]);
-						// const h = parseFloat(temp[1]);
-						// actionCreator.putTemperature(t);
-						// actionCreator.putHumidity(h);
-						
 					}
 				} catch (e) {
 					console.log('e:', e);
@@ -134,14 +143,15 @@ export function* onConnectSaga(action) {
 			}
 			if (temp != null) {
 				yield call(console.log, temp);
-				const t  = temp[0];
-				const h  = temp[1];
+				const t = temp[0];
+				const h = temp[1];
 				const date = Date.now();
 				yield put(actionCreator.putTemperature(t));
 				yield put(actionCreator.putHumidity(h));
-				
+
 				yield call(rsf.database.create, 'temperature', { t, date });
 				yield call(rsf.database.create, 'humidity', { h, date });
+				yield put(log.addLog('Nowe dane - T:'+t+" H:"+h));
 				// yield put(actionCreator.putDevice(scannedDevice));
 				// yield put(actionCreator.connect(scannedDevice));
 			}
@@ -150,66 +160,11 @@ export function* onConnectSaga(action) {
 	} finally {
 		yield call(console.log, 'Temperature stopped...');
 		if (yield cancelled()) {
+			yield put(log.addLog('Zakończenie nasłuchiwania'));
+			yield call([ device, device.cancelConnection ]);
 			temperatureChannel.close();
 		}
 	}
-
-	// device
-	// 	.connect()
-	// 	.then((device) => {
-	// 		return device.discoverAllServicesAndCharacteristics();
-	// 	})
-	// 	.then((device) => {
-	// 		console.log(device._manager);
-	// 		const servicesForDevice = device._manager.servicesForDevice(device.id);
-	// 		return servicesForDevice;
-	// 	})
-	// 	.then((services) => {
-	// 		return services.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
-	// 	})
-	// 	.then((service) => {
-	// 		console.log(service);
-	// 		return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-	// 	})
-	// 	.then((characteristics) => {
-	// 		return characteristics[0];
-	// 	})
-	// 	.then((characteristic) => {
-	// 		characteristic._manager.monitorCharacteristicForDevice(
-	// 			characteristic.deviceID,
-	// 			characteristic.serviceUUID,
-	// 			characteristic.uuid,
-	// 			(error, char) => {
-	// 				try {
-	// 					if (char.value !== null) {
-	// 						//const temp = base64.decode(char.value);
-	// 						const temp = parser(base64.decode(char.value));
-	// 						console.log('temperatura:' + temp);
-	// 						//this.setState({ temp });
-	// 						const t = parseFloat(temp[0]);
-	// 						const h = parseFloat(temp[1]);
-	// 						actionCreator.putTemperature(t);
-	// 						actionCreator.putHumidity(h);
-	// 						const date = Date.now();
-	// 						//firebase.database().ref('temperature').push({ t, date });
-	// 						//firebase.database().ref('humidity').push({ h, date });
-	// 					}
-	// 				} catch (e) {
-	// 					console.log('e:', e);
-	// 					console.log('error', error);
-	// 				}
-	// 			}
-	// 		);
-	// 		return characteristic;
-	// 	})
-	// 	.then((characteristic) => {
-	// 		characteristic._manager.stopDeviceScan();
-	// 	})
-	// 	.catch((error) => {
-	// 		//this.scanAgain();
-	// 		console.log(error);
-	// 	});
-	//manager.stopDeviceScan();
 }
 
 export function* connectSaga() {

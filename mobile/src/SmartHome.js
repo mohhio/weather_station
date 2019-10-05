@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, Button, PermissionsAndroid, ScrollView } from 'react-native';
 //import App from './App';
 import { BleManager } from 'react-native-ble-plx';
 import base64 from 'react-native-base64';
@@ -154,29 +154,9 @@ class SmartHome extends React.Component {
 
 	render() {
 		return (
-			//
-			//
-			//
 			<Container>
 				<Header />
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[0], height: 200, width: 200 }}>
-						<View style={styles.container}>
-							<Text style={{ fontSize: 30, color: '#FFF' }}>
-								{/* <IconFontMC name="thermometer" size={50} /> */}
-								{this.props.temperature.length > 0 && `${this.props.temperature[this.props.temperature.length-1]}°C`}
-							</Text>
-						</View>
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[2], height: 200 }}>
-						<View style={styles.container}>
-							<Text style={{ fontSize: 30, color: '#FFF' }}>
-								{/* <IconFontMC name="water" size={50} /> */}
-								{this.props.humidity.length > 0 && `${this.props.humidity[this.props.humidity.length-1]}%`}
-							</Text>
-						</View>
-					</Col>
-				</Grid>
+				<Thermometer colors={this.state.colors} />
 				<Grid>
 					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
 						{/* <Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" /> */}
@@ -196,7 +176,22 @@ class SmartHome extends React.Component {
 						<View style={styles.container} />
 					</Col>
 				</Grid>
-				<Thermometer />
+				<Grid>
+					<Col style={{ backgroundColor: 'black', height: 151 }}>
+						<ScrollView
+							ref={(ref) => (this.scrollView = ref)}
+							onContentSizeChange={(contentWidth, contentHeight) => {
+								this.scrollView.scrollToEnd({ animated: true });
+							}}
+						>
+							{this.props.log.map((log, key) => (
+								<Text key={key} style={{ color: '#00FF41' }}>
+									{log}
+								</Text>
+							))}
+						</ScrollView>
+					</Col>
+				</Grid>
 			</Container>
 		);
 	}
@@ -209,13 +204,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	(state) => ({
-		temperature: state.thermometer.temperature,
-		humidity: state.thermometer.humidity
+		log: state.log.log
 	}),
 	mapDispatchToProps
 )(SmartHome);
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
