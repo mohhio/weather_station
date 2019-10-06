@@ -12,14 +12,14 @@ public class HumidityMapper {
     public Humidity mapToHumidity(final HumidityDto humidityDto) {
         return new Humidity(
                 humidityDto.getId(),
-                humidityDto.getDataTime(),
+                humidityDto.getDateTime(),
                 humidityDto.getValue());
     }
 
-    public HumidityDto mapToHumidotyDto(final Humidity humidity) {
+    public HumidityDto mapToHumidityDto(final Humidity humidity) {
         return new HumidityDto(
                 humidity.getId(),
-                humidity.getDataTime(),
+                humidity.getDateTime(),
                 humidity.getValue());
     }
 
@@ -27,7 +27,7 @@ public class HumidityMapper {
         return humidityList.stream()
                 .map(humidity -> new HumidityDto(
                         humidity.getId(),
-                        humidity.getDataTime(),
+                        humidity.getDateTime(),
                         humidity.getValue()))
                 .collect(Collectors.toList());
     }

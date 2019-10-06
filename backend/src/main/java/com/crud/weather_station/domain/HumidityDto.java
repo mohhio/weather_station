@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class HumidityDto {
     private Long id;
-    private String dataTime;
+    private String dateTime;
     private Double value;
 }

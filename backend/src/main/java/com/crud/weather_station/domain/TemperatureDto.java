@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class TemperatureDto {
     private Long id;
-    private String dataTime;
+    private String dateTime;
     private Double value;
 }
