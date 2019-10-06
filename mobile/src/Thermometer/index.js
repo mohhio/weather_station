@@ -1,18 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { Col, Grid } from 'react-native-easy-grid';
-import {actionCreator} from './action';
-import { connect } from "react-redux";
-
+import { actionCreator } from './action';
+import { connect } from 'react-redux';
+import { styles } from './../SmartHome';
 class Thermometer extends React.Component {
 	render() {
 		return (
 			<Grid>
-				<Col style={{ backgroundColor: '#4CAF50', height: 200 }} onPress={this.props.connect}>
-					<Text>1</Text>
+				<Col style={{ backgroundColor: this.props.colors[0], height: 200, width: 200 }}>
+					<View style={styles.container}>
+						{this.props.temperature.length > 0 ? (
+							<Text style={{ fontSize: 30, color: '#FFF' }}>
+								{/* <IconFontMC name="thermometer" size={50} /> */}
+								{this.props.temperature[this.props.temperature.length - 1]}°C
+							</Text>
+						) : (
+							<Button onPress={() => this.props.scan(this.props.manager)} title="SCAN" />
+						)}
+					</View>
 				</Col>
-				<Col style={{ backgroundColor: '#FFEB3B', height: 200 }}>
-					<Text>2</Text>
+				<Col style={{ backgroundColor: this.props.colors[2], height: 200 }}>
+					<View style={styles.container}>
+						{this.props.humidity.length > 0 ? (
+							<Text style={{ fontSize: 30, color: '#FFF' }}>
+								{/* <IconFontMC name="water" size={50} /> */}
+								{this.props.humidity[this.props.humidity.length - 1]} %
+							</Text>
+						) : (
+							<Button onPress={() => this.props.grandPerrmistions()} title="Pozwolenia" />
+						)}
+					</View>
 				</Col>
 			</Grid>
 		);
@@ -23,12 +41,15 @@ class Thermometer extends React.Component {
 //     photoFirebaseId: state.addAuction.photoFirebaseId
 // })
 
-const mapDispatchToProps = dispatch => ({
-    connect: () => dispatch(actionCreator.connect()),
+const mapDispatchToProps = (dispatch) => ({
+	connect: (manager) => dispatch(actionCreator.connect(manager)),
+	scan: (manager) => dispatch(actionCreator.scan(manager))
 });
 
 export default connect(
-    null,
-    mapDispatchToProps
+	(state) => ({
+		temperature: state.thermometer.temperature,
+		humidity: state.thermometer.humidity
+	}),
+	mapDispatchToProps
 )(Thermometer);
-

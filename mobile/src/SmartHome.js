@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, Button, PermissionsAndroid, ScrollView } from 'react-native';
 //import App from './App';
 import { BleManager } from 'react-native-ble-plx';
 import base64 from 'react-native-base64';
@@ -7,11 +7,12 @@ import config from './firebase';
 import firebase from 'firebase';
 import { Container, Header } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
-import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
+// import IconFontMC from 'react-native-vector-icons/MaterialCommunityIcons';
 import Thermometer from './Thermometer';
-
-import {actionCreator} from './Thermometer/action';
-import { connect } from "react-redux";
+import Kettle from './Kettle';
+import { actionCreator } from './Thermometer/action';
+import { connect } from 'react-redux';
+import { thermometerSaga } from './Thermometer/saga';
 class SmartHome extends React.Component {
 	constructor() {
 		super();
@@ -38,8 +39,10 @@ class SmartHome extends React.Component {
 	}
 
 	componentDidMount() {
-		firebase.initializeApp(config);
-		
+		if (!firebase.apps.length) {
+			firebase.initializeApp(config);
+		}
+
 		this._interval = setInterval(() => {
 			this.countdownMinus();
 		}, 1000);
@@ -82,9 +85,6 @@ class SmartHome extends React.Component {
 		});
 	};
 
-
-
-	
 	// 		//kettle
 	// 		// if (device.name === 'MiKettle') {
 	// 		// 	console.log('znalazł czajnik');
@@ -154,65 +154,63 @@ class SmartHome extends React.Component {
 
 	render() {
 		return (
-			//
-			//
-			//
 			<Container>
-				<Header />
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[0], height: 200, width: 200 }}>
-						<View style={styles.container}>
-							<Text style={{ fontSize: 30, color: '#FFF' }}>
-								<IconFontMC name="thermometer" size={50} />
-								{this.state.temp && `${this.state.temp[0]}°C`}
+				<ScrollView>
+					<Header />
+					<Thermometer
+						colors={this.state.colors}
+						grandPerrmistions={this.grandPerrmistions}
+						manager={this.manager}
+					/>
+					<Grid>
+						<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
+							{this.props.temperature.length > 0 && (
+								<Button onPress={() => this.props.scan(this.manager)} title="SCAN" />
+							)}
+						</Col>
+						<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
+							<Text style={{ fontSize: 15, color: '#FFF' }}>
+								{this.state.countdown} - {this.state.acctual}
 							</Text>
-						</View>
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[2], height: 200 }}>
-						<View style={styles.container}>
-							<Text style={{ fontSize: 30, color: '#FFF' }}>
-								<IconFontMC name="water" size={50} />
-								{this.state.temp && `${this.state.temp[1]}`}%
-							</Text>
-						</View>
-					</Col>
-				</Grid>
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
-						<Button onPress={() => this.props.connect(this.manager)} title="Podłącz sie do termometra" />
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[4], height: 200 }}>
-						<Button onPress={() => this.grandPerrmistions()} title="Pozwolenia" />
-					</Col>
-				</Grid>
-				<Grid>
-					<Col style={{ backgroundColor: this.state.colors[3], height: 200 }}>
-						<Text style={{ fontSize: 15, color: '#FFF' }}>
-							{this.state.countdown} - {this.state.acctual}
-						</Text>
-					</Col>
-					<Col style={{ backgroundColor: this.state.colors[6], height: 200 }}>
-						<View style={styles.container} />
-					</Col>
-				</Grid>
-				<Thermometer />
+						</Col>
+					</Grid>
+					<Kettle colors={this.state.colors} manager={this.manager} />
+					<Grid>
+						<Col style={{ backgroundColor: 'black', height: 151 }}>
+							<ScrollView
+								ref={(ref) => (this.scrollView = ref)}
+								onContentSizeChange={(contentWidth, contentHeight) => {
+									this.scrollView.scrollToEnd({ animated: true });
+								}}
+							>
+								{this.props.log.map((log, key) => (
+									<Text key={key} style={{ color: '#00FF41' }}>
+										{log}
+									</Text>
+								))}
+							</ScrollView>
+						</Col>
+					</Grid>
+				</ScrollView>
 			</Container>
 		);
 	}
 }
 
-
-const mapDispatchToProps = dispatch => ({
-    connect: (manager) => dispatch(actionCreator.connect(manager)),
+const mapDispatchToProps = (dispatch) => ({
+	connect: (manager) => dispatch(actionCreator.connect(manager)),
+	scan: (manager) => dispatch(actionCreator.scan(manager))
 });
 
 export default connect(
-    null,
-    mapDispatchToProps
+	(state) => ({
+		temperature: state.thermometer.temperature,
+		log: state.log.log
+	}),
+	mapDispatchToProps
 )(SmartHome);
 
-
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
