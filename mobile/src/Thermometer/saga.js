@@ -32,17 +32,17 @@ export function* onScanSaga(action) {
 				return;
 			}
 			if (scanning) {
-				// if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
-				// 	console.log('znalazl termomter');
-				// 	emit([ error, scannedDevice ]);
-				// 	scanning = false;
-				// }
-
-				if (scannedDevice != null && scannedDevice.localName === 'MiKettle') {
-					console.log('znalazl czajnik');
+				if (scannedDevice != null && scannedDevice.localName === 'MJ_HT_V1') {
+					console.log('znalazl termomter');
 					emit([ error, scannedDevice ]);
 					scanning = false;
 				}
+
+				// if (scannedDevice != null && scannedDevice.localName === 'MiKettle') {
+				// 	console.log('znalazl czajnik');
+				// 	emit([ error, scannedDevice ]);
+				// 	scanning = false;
+				// }
 			} else {
 				console.log('zamkniecie');
 				manager.stopDeviceScan();
