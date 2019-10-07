@@ -30,7 +30,7 @@ class App extends React.Component {
 					curve: 'smooth'
 				},
 				title: {
-					text: 'Average High & Low Temperature',
+					text: 'Temperatura i wilgotność',
 					align: 'left'
 				},
 				grid: {
@@ -83,7 +83,7 @@ class App extends React.Component {
           xaxis: {
 					categories: date,
 					title: {
-						text: 'Miesiąc'
+						text: 'Czas'
 					}
         }
       };
