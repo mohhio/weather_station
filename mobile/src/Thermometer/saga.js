@@ -1,7 +1,7 @@
 import { eventChannel, buffers, END } from 'redux-saga';
 import { takeEvery, put, call, take, cancelled, all, fork } from 'redux-saga/effects';
 import { CONNECT, SCAN, actionCreator } from './action';
-
+import axios from 'axios';
 import base64 from 'react-native-base64';
 
 import firebase from 'firebase';
@@ -164,6 +164,17 @@ export function* onConnectSaga(action) {
 
 				yield call(rsf.database.create, 'temperature', { t, date });
 				yield call(rsf.database.create, 'humidity', { h, date });
+				console.log("test api")
+				
+				axios.post('http://192.168.1.8:8080/api/temperature', { value: t, dateTime: date }).then(function (response) {
+					console.log('response',response);
+				  })
+				  .catch(function (error) {
+					console.log('error',error);
+				  });;
+				  
+				//yield call(axios.post, "http://localhost:8080/api/temperature", { value: t, dateTime: date });
+				console.log('end test api');
 				yield put(log.addLog('Nowe dane - T:'+t+" H:"+h));
 				// yield put(actionCreator.putDevice(scannedDevice));
 				// yield put(actionCreator.connect(scannedDevice));
