@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = HumidityController.class)
 public class HumidityControllerTestSuite {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
     @MockBean
-    HumidityMapper humidityMapper;
+    private HumidityMapper humidityMapper;
     @MockBean
-    DbService dbService;
+    private DbService dbService;
 
     @Test
     public void shouldGetAllHumidity() throws Exception {
