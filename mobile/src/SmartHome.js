@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, PermissionsAndroid, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, PermissionsAndroid, ScrollView, Dimensions } from 'react-native';
 //import App from './App';
 import { BleManager } from 'react-native-ble-plx';
 import base64 from 'react-native-base64';
@@ -13,6 +13,16 @@ import Kettle from './Kettle';
 import { actionCreator } from './Thermometer/action';
 import { connect } from 'react-redux';
 import { thermometerSaga } from './Thermometer/saga';
+
+import {
+	LineChart,
+	BarChart,
+	PieChart,
+	ProgressChart,
+	ContributionGraph,
+	StackedBarChart
+} from 'react-native-chart-kit';
+
 class SmartHome extends React.Component {
 	constructor() {
 		super();
@@ -69,7 +79,6 @@ class SmartHome extends React.Component {
 	grandPerrmistions = () => {
 		console.log('Scanning: Checking permissions...');
 
-		//
 		console.log('DATA RETRIEVED');
 		PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION).then((enabled) => {
 			if (!enabled) {
@@ -85,73 +94,6 @@ class SmartHome extends React.Component {
 		});
 	};
 
-	// 		//kettle
-	// 		// if (device.name === 'MiKettle') {
-	// 		// 	console.log('znalazł czajnik');
-	// 		// 	device
-	// 		// 		.connect()
-	// 		// 		.then((device) => {
-	// 		// 			console.log(device);
-	// 		// 			return device.discoverAllServicesAndCharacteristics();
-	// 		// 		})
-	// 		// 		.then((device) => {
-	// 		// 			console.log(servicesForDevice);
-	// 		// 			const servicesForDevice = device._manager.servicesForDevice(device.id);
-	// 		// 			return servicesForDevice;
-	// 		// 		})
-	// 		// 		.then((services) => {
-	// 		// 			return services.filter((service) => service.uuid === '01344736-0000-1000-8000-262837236156')[0];
-	// 		// 		})
-	// 		// 		.then((service) => {
-	// 		// 			return service._manager.characteristicsForDevice(service.deviceID, service.uuid);
-	// 		// 		})
-	// 		// 		.then((characteristics) => {
-	// 		// 			//0000aa02-0000-1000-8000-00805f9b34fb -status characteristics
-
-	// 		// 			//characteristics.map((characteristic)=>{
-	// 		// 				console(characteristics);
-	// 		// 				const characteristic = characteristics[3];
-	// 		// 				characteristic._manager.monitorCharacteristicForDevice(
-	// 		// 					characteristic.deviceID,
-	// 		// 					characteristic.serviceUUID,
-	// 		// 					characteristic.uuid,
-	// 		// 					(error, char) => {
-	// 		// 						console.log(error);
-	// 		// 						console.log(char)
-	// 		// 					}
-	// 		// 				)
-
-	// 		// 			//console.log(characteristics[1]);
-	// 		// 			return characteristics[1];
-	// 		// 		})
-	// 		// 		// .then((characteristic) => {
-	// 		// 		// 	console.log(characteristic);
-	// 		// 		// 	characteristic._manager.monitorCharacteristicForDevice(
-	// 		// 		// 		characteristic.deviceID,
-	// 		// 		// 		characteristic.serviceUUID,
-	// 		// 		// 		characteristic.uuid,
-	// 		// 		// 		(error, char) => {
-	// 		// 		// 			console.log(error);
-	// 		// 		// 			console.log(char)
-	// 		// 		// 			// const temp = this.parser(base64.decode(char.value));
-
-	// 		// 		// 			// this.setState({ temp });
-
-	// 		// 		// 			// const t = parseFloat(temp[0]);
-	// 		// 		// 			// const h = parseFloat(temp[1]);
-
-	// 		// 		// 			// const date = Date.now();
-	// 		// 		// 			// firebase.database().ref('temperature').push({ t, date });
-	// 		// 		// 			// firebase.database().ref('humidity').push({ h, date });
-	// 		// 		// 		}
-	// 		// 		// 	);
-
-	// 		// 		//	return characteristic;
-	// 		// 		//});
-	// 		// }
-	// 	});
-	// };
-
 	render() {
 		return (
 			<Container>
@@ -162,7 +104,7 @@ class SmartHome extends React.Component {
 						grandPerrmistions={this.grandPerrmistions}
 						manager={this.manager}
 					/>
-					<Grid>
+					{/* <Grid>
 						<Col style={{ backgroundColor: this.state.colors[1], height: 200 }}>
 							{this.props.temperature.length > 0 && (
 								<Button onPress={() => this.props.scan(this.manager)} title="SCAN" />
@@ -173,8 +115,51 @@ class SmartHome extends React.Component {
 								{this.state.countdown} - {this.state.acctual}
 							</Text>
 						</Col>
+					</Grid> */}
+					{/* <Kettle colors={this.state.colors} manager={this.manager} /> */}
+					<Grid>
+						<Col style={{ backgroundColor: 'black', height: 255 }}>
+						{this.props.temperature.length > 0 && <View>
+								<Text>Wykres temperatury</Text>
+								<LineChart
+									data={{
+										labels: [  ],
+										datasets: [
+											{
+												data: [ 0,
+													...this.props.temperature
+												]
+											}
+										]
+									}}
+									width={Dimensions.get('window').width} // from react-native
+									height={220}
+									yAxisLabel={''}
+									chartConfig={{
+										backgroundColor: '#000',
+										backgroundGradientFrom: '#fb8c00',
+										backgroundGradientTo: '#ffa726',
+										decimalPlaces: 2, // optional, defaults to 2dp
+										color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+										labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+										style: {
+											borderRadius: 16
+										},
+										propsForDots: {
+											r: '6',
+											strokeWidth: '2',
+											stroke: '#ffa726'
+										}
+									}}
+									bezier
+									style={{
+										marginVertical: 8,
+										borderRadius: 16
+									}}
+								/>
+							</View>}
+						</Col>
 					</Grid>
-					<Kettle colors={this.state.colors} manager={this.manager} />
 					<Grid>
 						<Col style={{ backgroundColor: 'black', height: 151 }}>
 							<ScrollView

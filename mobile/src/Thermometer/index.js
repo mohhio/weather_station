@@ -10,14 +10,12 @@ class Thermometer extends React.Component {
 			<Grid>
 				<Col style={{ backgroundColor: this.props.colors[0], height: 200, width: 200 }}>
 					<View style={styles.container}>
-						{this.props.temperature.length > 0 ? (
-							<Text style={{ fontSize: 30, color: '#FFF' }}>
+						<Text style={{ fontSize: 30, color: '#FFF' }}>
 								{/* <IconFontMC name="thermometer" size={50} /> */}
-								{this.props.temperature[this.props.temperature.length - 1]}°C
+								{this.props.temperature.length > 0 ? this.props.temperature[this.props.temperature.length - 1] +"°C" : null}
 							</Text>
-						) : (
 							<Button onPress={() => this.props.scan(this.props.manager)} title="SCAN" />
-						)}
+					
 					</View>
 				</Col>
 				<Col style={{ backgroundColor: this.props.colors[2], height: 200 }}>
