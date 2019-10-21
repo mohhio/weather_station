@@ -108,11 +108,13 @@ export function* onConnectSaga(action) {
 
 	const servicesForDevice = yield call([ manager, manager.servicesForDevice ], device.id);
 	yield put(log.addLog('Serwisy pobrane'));
+	console.log(servicesForDevice);
 
 	const service = servicesForDevice.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
 
 	yield call(console.log, service);
 	const characteristics = yield call([ manager, manager.characteristicsForDevice ], service.deviceID, service.uuid);
+	console.log(characteristics);
 	yield put(log.addLog('Charakterystyki pobrane'));
 	const characteristic = characteristics[0];
 	yield call(console.log, characteristic);
