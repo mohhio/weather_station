@@ -58,6 +58,7 @@
 		2D02E47B1E0B4A5D006451C7 /* nextBle-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nextBle-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* nextBle-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nextBle-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D881534E8AB2A82B7488B06 /* Pods-nextBleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nextBleTests.debug.xcconfig"; path = "Target Support Files/Pods-nextBleTests/Pods-nextBleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		77012B00235734530016B5B5 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		7771F6D7234666C20039055B /* nextBle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "nextBle-Bridging-Header.h"; sourceTree = "<group>"; };
 		7771F6D8234666C30039055B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		7E4455E2BF2FAB8417FE71BC /* Pods-nextBle-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nextBle-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-nextBle-tvOSTests/Pods-nextBle-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,10 +129,13 @@
 		13B07FAE1A68108700A75B9A /* nextBle */ = {
 			isa = PBXGroup;
 			children = (
+				77012B03235744BD0016B5B5 /* New Group */,
+				77012AFF2357343D0016B5B5 /* assets */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				77012B00235734530016B5B5 /* logo.png */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -150,6 +154,20 @@
 				F6D32ED7141E41F64D2F15D4 /* libPods-nextBleTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77012AFF2357343D0016B5B5 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		77012B03235744BD0016B5B5 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -693,17 +711,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 683MXZZR23;
 				INFOPLIST_FILE = nextBle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanuscommercialarts.nextble;
 				PRODUCT_NAME = nextBle;
 				SWIFT_OBJC_BRIDGING_HEADER = "nextBle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -718,16 +737,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 683MXZZR23;
 				INFOPLIST_FILE = nextBle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanuscommercialarts.nextble;
 				PRODUCT_NAME = nextBle;
 				SWIFT_OBJC_BRIDGING_HEADER = "nextBle-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <title>Web Bluetooth</title>
+    </head>
+    <body>
+       <h1 id="temperatura"></h1>
+        <script>
+     let options = {};
+                options.acceptAllDevices = true;
+
+        function onDiscover() {
+           
+
+                    console.log('Requesting Bluetooth Device...');
+                    console.log('with ' + JSON.stringify(options));
+                    
+                    navigator.bluetooth.requestDevice(options)
+                    .then(device => {
+                        console.log('> Name:             ' + device.name);
+                        console.log('> Id:               ' + device.id);
+                        console.log('> Connected:        ' + device.gatt.connected);
+                    })
+                    .catch(error => {
+                        console.log('Argh! ' + error);
+                    });
+
+                }
+
+                function onButtonClick() {
+
+                    console.log('Requesting Bluetooth Device...');
+                    navigator.bluetooth.requestDevice({filters: [{services: ['battery_service']}]})
+                    .then(device => {
+                        console.log(device);
+                        console.log('Connecting to GATT Server...');
+                        return device.gatt.connect();
+                    })
+                    .then(server => {
+                        console.log('Getting Battery Service...');
+                        console.log(server);
+                        return server.getPrimaryService('battery_service');
+                    })
+                    .then(service => {
+                        console.log('Getting Battery Level Characteristic...');
+                        console.log(service);
+                        return service.getCharacteristic('battery_level');
+                    })
+                    .then(characteristic => {
+                        console.log('Reading Battery Level...');
+                        console.log(characteristic);
+                        return characteristic.readValue();
+                    })
+                    .then(value => {
+                        let batteryLevel = value.getUint8(0);
+                        console.log('> Battery Level is ' + batteryLevel + '%');
+                    })
+                    .catch(error => {
+                        console.log('Argh! ' + error);
+                    });
+}
+
+function onTemperature() {
+    // Validate services UUID entered by user first.
+    let uuid = '226c0000-6476-4566-7562-66734470666d';
+    let optionalServices = uuid.split(/, ?/).map(s => s.startsWith('0x') ? parseInt(s) : s)
+        .filter(s => s && BluetoothUUID.getService);
+
+    console.log('Requesting any Bluetooth Device...');
+    navigator.bluetooth.requestDevice({
+    // filters: [...] <- Prefer filters to save energy & show relevant devices.
+        acceptAllDevices: true,
+        optionalServices: optionalServices})
+    .then(device => {
+        console.log('Connecting to GATT Server...');
+        return device.gatt.connect();
+    })
+    .then(server => {
+        // Note that we could also get all services that match a specific UUID by
+        // passing it to getPrimaryServices().
+        console.log('Getting Services...');
+        return server.getPrimaryServices();
+    })
+    .then(services => {
+        console.log('Getting Characteristics...');
+        let queue = Promise.resolve();
+        services.forEach(service => {
+            queue = queue.then(_ => service.getCharacteristics().then(characteristics => {
+                console.log('> Service: ' + service.uuid);
+                characteristics.forEach(characteristic => {
+                    console.log(characteristic);
+                    console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+                    getSupportedProperties(characteristic));
+                    const myCharacteristic = characteristic;
+                    return myCharacteristic.startNotifications().then(_ => {
+                    console.log('> Notifications started');
+                    myCharacteristic.addEventListener('characteristicvaluechanged',
+                        handleNotifications);
+                    });
+
+                });
+            }));
+        });
+        return queue;
+    })
+    .catch(error => {
+        console.log('Argh! ' + error);
+    });
+}
+
+function hex_to_ascii(str1)
+ {
+	var hex  = str1.toString();
+	var str = '';
+	for (var n = 0; n < hex.length; n += 2) {
+		str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+	}
+	return str;
+ }
+
+ console.log(hex_to_ascii("> 0x54 0x3d 0x32 0x34 0x2e 0x32 0x20 0x48 0x3d 0x35 0x39 0x2e 0x39 0x00"));
+/* Utils */
+
+function onStopButtonClick() {
+  if (myCharacteristic) {
+    myCharacteristic.stopNotifications()
+    .then(_ => {
+      log('> Notifications stopped');
+      myCharacteristic.removeEventListener('characteristicvaluechanged',
+          handleNotifications);
+    })
+    .catch(error => {
+      console.log('Argh! ' + error);
+    });
+  }
+}
+
+function handleNotifications(event) {
+  let value = event.target.value;
+  console.log(value);
+  const buffer = value.buffer;
+  const base64 = String.fromCharCode.apply(null, new Uint8Array(buffer));
+
+  console.log(base64);
+  document.getElementById("temperatura").innerHTML = base64;
+  let a = [];
+  // Convert raw data bytes to hex values just for the sake of showing something.
+  // In the "real" world, you'd use data.getUint8, data.getUint16 or even
+  // TextDecoder to process raw data bytes.
+  for (let i = 0; i < value.byteLength; i++) {
+    a.push('0x' + ('00' + value.getUint8(i).toString(16)).slice(-2));
+  }
+  console.log('> ' + a.join(' '));
+}
+
+function getSupportedProperties(characteristic) {
+  let supportedProperties = [];
+  for (const p in characteristic.properties) {
+    if (characteristic.properties[p] === true) {
+      supportedProperties.push(p.toUpperCase());
+    }
+  }
+  return '[' + supportedProperties.join(', ') + ']';
+}
+        </script>
+
+<button onclick="onDiscover()">Discovering</button>
+<button onclick="onButtonClick()">Battery Level</button>
+<button onclick="onTemperature()">Temperature</button>
+    </body>
+</html>

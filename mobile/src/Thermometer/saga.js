@@ -1,5 +1,5 @@
 import { eventChannel, buffers, END } from 'redux-saga';
-import { takeEvery, put, call, take, cancelled, all, fork } from 'redux-saga/effects';
+import { takeEvery, put, call, take, cancelled, all, fork, delay } from 'redux-saga/effects';
 import { CONNECT, SCAN, actionCreator } from './action';
 import axios from 'axios';
 import base64 from 'react-native-base64';
@@ -108,11 +108,13 @@ export function* onConnectSaga(action) {
 
 	const servicesForDevice = yield call([ manager, manager.servicesForDevice ], device.id);
 	yield put(log.addLog('Serwisy pobrane'));
+	console.log(servicesForDevice);
 
 	const service = servicesForDevice.filter((service) => service.uuid === '226c0000-6476-4566-7562-66734470666d')[0];
 
 	yield call(console.log, service);
 	const characteristics = yield call([ manager, manager.characteristicsForDevice ], service.deviceID, service.uuid);
+	console.log(characteristics);
 	yield put(log.addLog('Charakterystyki pobrane'));
 	const characteristic = characteristics[0];
 	yield call(console.log, characteristic);
@@ -130,20 +132,24 @@ export function* onConnectSaga(action) {
 							const temp = parser(base64.decode(char.value));
 							console.log('Before emit>>>', temp);
 							emit([ error, temp ]);
-							//emitting = false;
+							emitting = false;
+						
 						} else {
+							log.addLog('sie rozlaczylo2');
 							emit(END);
 						}
 					}
 				} catch (e) {
 					console.log('e:', e);
 					console.log('error', error);
+					log.addLog('wiecej nie bedzie');
 					emit(END);
 				}
 			}
 		);
 		return () => {
 			console.log('sie rozlaczylo');
+			log.addLog('sie rozlaczylo');
 			// manager.stopDeviceScan();
 		};
 	}, buffers.expanding(1));
@@ -153,6 +159,8 @@ export function* onConnectSaga(action) {
 			const [ error, temp ] = yield take(temperatureChannel);
 
 			if (error != null) {
+				console.log('koniec');
+				log.addLog('koniec');
 			}
 			if (temp != null) {
 				yield call(console.log, temp);
@@ -176,13 +184,38 @@ export function* onConnectSaga(action) {
 				//yield call(axios.post, "http://localhost:8080/api/temperature", { value: t, dateTime: date });
 				console.log('end test api');
 				yield put(log.addLog('Nowe dane - T:'+t+" H:"+h));
+				yield put(log.addLog('10'));
+				yield delay(1000);
+				yield put(log.addLog('9'));
+				yield delay(1000);
+				yield put(log.addLog('8'));
+				yield delay(1000);
+				yield put(log.addLog('7'));
+				yield delay(1000);
+				yield put(log.addLog('6'));
+				yield delay(1000);
+				yield put(log.addLog('5'));
+				yield delay(1000);
+				yield put(log.addLog('4'));
+				yield delay(1000);
+				yield put(log.addLog('3'));
+				yield delay(1000);
+				yield put(log.addLog('1'));
+				yield delay(1000);
+				yield put(log.addLog('nowy strzał'));
+				yield put(actionCreator.scan(manager));
+
+					
 				// yield put(actionCreator.putDevice(scannedDevice));
 				// yield put(actionCreator.connect(scannedDevice));
 			}
 		}
 	} catch (error) {
+		yield call(console.log, 'Catch Error...');
+		yield call(log.addLog, 'Catch Error...');
 	} finally {
 		yield call(console.log, 'Temperature stopped...');
+		yield call(log.addLog, 'Temperature stopped...');
 		if (yield cancelled()) {
 			yield put(log.addLog('Zakończenie nasłuchiwania'));
 			yield call([ device, device.cancelConnection ]);
