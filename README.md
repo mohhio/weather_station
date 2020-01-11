@@ -28,7 +28,7 @@ Aplikacja Webowa,napisana w React, wyswietla wykres na podstawie danych pobieran
 Napiasany w strukturze REST API, pełna dokumentacja po uruchomieniu projektu
 
 ## Struktura bazy danych MySQL
-##Tabele
+## Tabele
 - Temperature(id, value, datetime);
 - Humidity(id, value, datetime);
 
@@ -36,12 +36,12 @@ Napiasany w strukturze REST API, pełna dokumentacja po uruchomieniu projektu
 - http://localhost:8080/api/temperature
 - http://localhost:8080/api/humidity
 
-##Jak uruchomić
+## Jak uruchomić
 1. Zainstaluj Gradle: <a href="https://docs.gradle.org/current/userguide/installation.html"> instrukcja</a>
 2. Wejdż do katalogu backend ```cd backend```
 3. Uruchom ```./gradlew bootRun```
 
-##Dokumentacja
+## Dokumentacja
 Wejdź na stronę <a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a>
 
 
